@@ -1,0 +1,20 @@
+.userlogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.userlogin a{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    width: 10%;
+    border: 1px solid rgb(179, 179, 92);
+    border-radius: 10px;
+    background-color: beige;
+}
+.userlogin a:hover{
+    background-color: wheat;
+    color: black;
+}
