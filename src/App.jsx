@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import SignupPage from './components/Forms/SignupPage'
 import LoginPage from './components/Forms/LoginPage'
 import LandingPage from './components/LandingPage'
+import AdminPage from './components/adminPage/AdminPage'
+import AddBook from './components/adminPage/AddBook'
 
 function App() {
 
@@ -19,6 +21,8 @@ function App() {
         <Route path='/' element={<LandingPage />}></Route>
         <Route path='loginPage' element={<LoginPage />}></Route>
         <Route path='signupPage' element={<SignupPage formtype='signup' />}></Route>
+        <Route path='adminPage' element={<AdminPage></AdminPage>}></Route>
+        <Route path='addBook' element={<AddBook ></AddBook>}></Route>
       </Routes>
     </>
   )
