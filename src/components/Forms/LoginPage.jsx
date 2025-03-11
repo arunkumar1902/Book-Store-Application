@@ -1,16 +1,42 @@
 import React from 'react'
 import FormValidation from './FormValidation'
 import '../../assets/styles/Forms.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
 function LoginPage({ data, handleChange, validation, error }) {
+    const navigate = useNavigate();
+    
+    const handleSubmit = async (event) => {
 
-    const handleSubmit = (event)=>{
         event.preventDefault();
-        if(validation()){
-            
-            alert("Login Successful");
+        if (validation()) {
+            try {
+                const dbResponse = await axios.get('http://localhost:3000/user');
+                const existingData = dbResponse.data;
+                // find the email and password is exist in db
+                const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));
+
+                console.log(userExistance);
+                //checking user logged i as admin
+                if (data.email === "admin@gmail.com" && data.password === "Admin@123") {
+                    alert('Logined as admin');
+                    navigate('/adminPage')
+                }
+                // for user login
+                else if (userExistance) {
+                    alert('Login successful');
+                    navigate('/bookRental');
+                }
+                else {
+                    alert('Email or password incorrect');
+                }
+
+
+            } catch (error) {
+                alert("Error Occurred : " + error);
+            }
         }
     }
     return (

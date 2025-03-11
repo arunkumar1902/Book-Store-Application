@@ -1,11 +1,12 @@
 import React from 'react'
 import FormValidation from './FormValidation'
 import '../../assets/styles/Forms.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 function SignupPage({ data, handleChange, validation, error }) {
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -22,6 +23,7 @@ function SignupPage({ data, handleChange, validation, error }) {
                     .then((response) => {
                         console.log(response.data);
                         alert('Account Created Successfully, Login now');
+                        navigate('/loginPage');
                         
                     }).catch((error)=>{
                         alert('Error Occurred : ' + error);

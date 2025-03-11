@@ -35,3 +35,8 @@
     background-color: rgb(27, 27, 27);
     cursor: pointer;
 }
+.back{
+    padding-left: 20px;
+    padding-top: 20px;
+    cursor: pointer;
+}
