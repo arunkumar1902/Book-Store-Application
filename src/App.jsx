@@ -5,6 +5,8 @@ import LoginPage from './components/Forms/LoginPage'
 import LandingPage from './components/LandingPage'
 import AdminPage from './components/adminPage/AdminPage'
 import AddBook from './components/adminPage/AddBook'
+import UpdateBook from './components/adminPage/UpdateBook'
+import BookRental from './components/userPage/BookRental'
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
         <Route path='signupPage' element={<SignupPage formtype='signup' />}></Route>
         <Route path='adminPage' element={<AdminPage></AdminPage>}></Route>
         <Route path='addBook' element={<AddBook ></AddBook>}></Route>
+        <Route path='updateBook' element={<UpdateBook></UpdateBook>}></Route>
+        <Route path='bookRental' element={<BookRental></BookRental>}></Route>
       </Routes>
     </>
   )
