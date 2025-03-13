@@ -1,25 +1,26 @@
 {
   "user": [
     {
-      "username": "Arun",
-      "email": "kumar1902002@gmail.com",
-      "password": "123@Qwe",
-      "confirmpassword": "123@Qwe",
+      "username": "Admin",
+      "email": "admin@gmail.com",
+      "password": "Admin@123",
+      "confirmpassword": "Admin@123",
       "id": 1
     },
     {
       "username": "Arun",
-      "email": "arun123@gmail.com",
-      "password": "@qwe123Q",
-      "confirmpassword": "@qwe123Q",
+      "email": "kumar1902002@gmail.com",
+      "password": "123@Qwe",
+      "confirmpassword": "123@Qwe",
+      "booksRented": [
+        {
+          "bookId": 1
+        },
+        {
+          "bookId": 2
+        }
+      ],
       "id": 2
-    },
-    {
-      "username": "Arun",
-      "email": "arunkumar@gmail.com",
-      "password": "@Arun002",
-      "confirmpassword": "@Arun002",
-      "id": 3
     }
   ],
   "BooksDetails": [
@@ -27,42 +28,42 @@
       "bookTitle": "Programming with Java | 7th Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
       "bookAuthor": " E. Balagurusamy",
-      "bookStock": "1",
+      "bookStock": 8,
       "id": 1
     },
     {
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
-      "bookStock": "6",
+      "bookStock": 1,
       "id": 2
     },
     {
       "bookTitle": "Elementary Number Theory | 7th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
       "bookAuthor": " David M. Burton",
-      "bookStock": "3",
+      "bookStock": 9,
       "id": 3
     },
     {
       "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9781718502086.jpg",
       "bookAuthor": "ERIC, MATTHES",
-      "bookStock": "4",
+      "bookStock": 8,
       "id": 4
     },
     {
       "bookTitle": "Computer Networks: A Top-Down Approach",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/900/9789355324900.jpg",
       "bookAuthor": "Behrouz A. Forouzan ",
-      "bookStock": "2",
+      "bookStock": 4,
       "id": 5
     },
     {
       "bookTitle": "Real and Complex Analysis | 3rd Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/119/9789355326119.jpg",
       "bookAuthor": "Walter Rudin ",
-      "bookStock": "1",
+      "bookStock": 2,
       "id": 6
     }
   ]

@@ -23,6 +23,15 @@
     margin: 10px;
     border-radius: 10px;
 }
+.userpage button:disabled{
+    background-color: #fffffe;
+    color: rgb(254, 235, 235);
+}
+.userpage button:disabled:hover{
+    background-color: #fffffe;    
+    color: rgb(254, 235, 235);
+
+}
 .userpage button:hover{
     background-color: rgb(252, 158, 7); 
     color: white;
@@ -30,7 +39,7 @@
 .userButtons i{
     color: rgb(133, 134, 74);
 }
-.userProfile{
+.userProfile, .userRentBook{
     width: 70%;
     margin: 10px;
     background-color: rgb(237, 237, 162);
