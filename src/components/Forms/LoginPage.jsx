@@ -1,13 +1,13 @@
 import React from 'react'
 import FormValidation from './FormValidation'
 import '../../assets/styles/Forms.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useAuth } from '../auth/AuthProvider'
 
 
 function LoginPage({ data, handleChange, validation, error }) {
-    const navigate = useNavigate();
-    
+    const auth = useAuth();
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -18,16 +18,9 @@ function LoginPage({ data, handleChange, validation, error }) {
                 // find the email and password is exist in db
                 const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));
 
-                console.log(userExistance);
-                //checking user logged i as admin
-                if (data.email === "admin@gmail.com" && data.password === "Admin@123") {
-                    alert('Logined as admin');
-                    navigate('/adminPage')
-                }
-                // for user login
-                else if (userExistance) {
+                if (userExistance) {
                     alert('Login successful');
-                    navigate('/bookRental');
+                    auth.loginAction(userExistance);
                 }
                 else {
                     alert('Email or password incorrect');

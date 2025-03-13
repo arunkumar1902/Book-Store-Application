@@ -7,8 +7,11 @@ import AdminPage from './components/adminPage/AdminPage'
 import AddBook from './components/adminPage/AddBook'
 import UpdateBook from './components/adminPage/UpdateBook'
 import BookRental from './components/userPage/BookRental'
+import PrivateRoute from './components/auth/PrivateRoute'
+import AuthProvider from './components/auth/AuthProvider'
 
 function App() {
+
 
   return (
     <>
@@ -19,15 +22,19 @@ function App() {
       </div>
 
 
-      <Routes>
-        <Route path='/' element={<LandingPage />}></Route>
-        <Route path='loginPage' element={<LoginPage />}></Route>
-        <Route path='signupPage' element={<SignupPage formtype='signup' />}></Route>
-        <Route path='adminPage' element={<AdminPage></AdminPage>}></Route>
-        <Route path='addBook' element={<AddBook ></AddBook>}></Route>
-        <Route path='updateBook' element={<UpdateBook></UpdateBook>}></Route>
-        <Route path='bookRental' element={<BookRental></BookRental>}></Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path='/' element={<LandingPage />}></Route>
+          <Route path='loginPage' element={<LoginPage />}></Route>
+          <Route path='signupPage' element={<SignupPage formtype='signup' />}></Route>
+          <Route element={<PrivateRoute></PrivateRoute>}>
+            <Route path='adminPage' element={<AdminPage></AdminPage>}></Route>
+            <Route path='updateBook' element={<UpdateBook></UpdateBook>}></Route>
+            <Route path='addBook' element={<AddBook ></AddBook>}></Route>
+            <Route path='bookRental' element={<BookRental></BookRental>}></Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </>
   )
 }

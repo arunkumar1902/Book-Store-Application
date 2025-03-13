@@ -22,9 +22,11 @@ export default function UpdateBook() {
 
     const handleChanges = (event) => {
         const { name, value } = event.target;
+
+        const updatedValue = (name === "bookStock" ? Number(value) : value);
         setBookDetails((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: updatedValue
         }));
     }
 

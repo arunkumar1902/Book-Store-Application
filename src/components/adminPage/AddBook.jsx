@@ -64,7 +64,7 @@ export default function AddBook() {
                         </div>
 
                         <div>
-                            <label htmlFor="bookImage">Cover Image</label>
+                            <label htmlFor="bookImage">Cover Image URL</label>
                             <input
                                 type='url'
                                 id='bookImage'

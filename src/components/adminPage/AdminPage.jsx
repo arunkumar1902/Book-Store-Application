@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import '../../assets/styles/AdminPage.css'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
 
 
 export default function AdminPage() {
   const [booksData, setBooksData] = useState([]);
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const fetchBookDetails = async () => {
     try {
@@ -18,7 +20,12 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    fetchBookDetails();
+    const data = JSON.parse(localStorage.getItem('site'));
+    if (data) {
+      fetchBookDetails();
+    } else {
+      navigate('/loginPage');
+    }
   }, []);
 
   const handleAddBook = () => {
@@ -26,11 +33,11 @@ export default function AdminPage() {
   }
 
   const handleUpdate = (bookId) => {
+    console.log(bookId);
     navigate('/updateBook', { state: { book: bookId } });
   }
 
-  const handleDelete = async (bookId, bookStock) => {
-    // if (bookStock === 0) {
+  const handleDelete = async (bookId) => {
       try {
         await axios.delete(`http://localhost:3000/BooksDetails/${bookId}`);
         fetchBookDetails();
@@ -38,10 +45,6 @@ export default function AdminPage() {
       } catch (error) {
         console.log("Error in Deleting Book : " + error);
       }
-    // }
-    // else {
-    //   alert("Still Stock is Pending");
-    // }
   }
 
   return (
@@ -49,6 +52,7 @@ export default function AdminPage() {
 
       <div className='adminButtons'>
         <button onClick={handleAddBook}>Add New Book</button>
+        <button onClick={() => (auth.logout())}>Logout</button>
       </div>
 
 
@@ -69,7 +73,7 @@ export default function AdminPage() {
               <p>Stock : {books.bookStock}</p>
               <div>
                 <button onClick={() => { handleUpdate(books.id) }}>Update Book</button>
-                <button onClick={() => { handleDelete(books.id, books.stock) }}>Delete Book</button>
+                <button onClick={() => { handleDelete(books.id) }}>Delete Book</button>
               </div>
             </div>
           </div>

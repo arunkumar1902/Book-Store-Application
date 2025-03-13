@@ -19,7 +19,8 @@ function SignupPage({ data, handleChange, validation, error }) {
                     alert('User already Exist, try again');
                 }
                 else{
-                    await axios.post("http://localhost:3000/user", data)
+                    const updatedData = {...data,booksRented:[]}
+                    await axios.post("http://localhost:3000/user", updatedData)
                     .then((response) => {
                         console.log(response.data);
                         alert('Account Created Successfully, Login now');
