@@ -9,6 +9,7 @@ export default function AdminPage() {
   const [booksData, setBooksData] = useState([]);
   const navigate = useNavigate();
   const auth = useAuth();
+  const [search, setSearch]= useState('');
 
   const fetchBookDetails = async () => {
     try {
@@ -47,8 +48,15 @@ export default function AdminPage() {
       }
   }
 
+  const handleSearch = (event)=>{
+    setSearch(event.target.value);
+    
+    // booksData.map((book)=>)
+  }
+
   return (
     <div className='adminpage'>
+      {/* <input type='search' value={search} onChange={(event)=>(handleSearch(event))}></input> */}
 
       <div className='adminButtons'>
         <button onClick={handleAddBook}>Add New Book</button>

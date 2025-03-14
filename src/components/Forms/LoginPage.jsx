@@ -17,7 +17,11 @@ function LoginPage({ data, handleChange, validation, error }) {
                 const existingData = dbResponse.data;
                 // find the email and password is exist in db
                 const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));
-
+                // userExistance = {
+                    
+                //     email : 'arun@gmail.com',
+                //     password : '123@Qwe'
+                // }
                 if (userExistance) {
                     alert('Login successful');
                     auth.loginAction(userExistance);
