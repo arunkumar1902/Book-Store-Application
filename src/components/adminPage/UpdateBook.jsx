@@ -3,7 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function UpdateBook() {
-    const [bookDetails, setBookDetails] = useState({});
+    const [bookDetails, setBookDetails] = useState({
+        bookTitle:'',
+        bookImage:'',
+        bookAuthor:'',
+        bookStock:''
+    });
+
     const navigate = useNavigate();
     const location = useLocation();
     const { book } = location.state;

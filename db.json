@@ -34,6 +34,13 @@
   ],
   "BooksDetails": [
     {
+      "bookTitle": "Programming with Java | 7th Edition ",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
+      "bookAuthor": " E. Balagurusamy",
+      "bookStock": "5",
+      "id": 1
+    },
+    {
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
