@@ -113,7 +113,7 @@ export default function BookRental() {
       setBooksDetails(filterdBooks);
     }
     else {
-      const searchTerms = search.toLowerCase().split(" ");
+      const searchTerms = Array.from(search.toLowerCase());
       const books = filterdBooks.filter((bookdata) => {
         const BookTitle = bookdata.bookTitle.toLowerCase();
         return searchTerms.every((term)=>(BookTitle.includes(term)));
@@ -126,7 +126,6 @@ export default function BookRental() {
   return (
     <>
       <div className="userpage">
-
         <div className='userButtons'>
 
           <input type='search' onChange={handleSearch} placeholder='Search Book with Title' ></input>
