@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../assets/styles/Forms.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../auth/AuthProvider'
 
 
 export default function LoginPage() {
     const auth = useAuth();
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         email: '',
@@ -18,6 +19,17 @@ export default function LoginPage() {
         passwordError: ''
     });
 
+    useEffect(()=>{
+        const data = localStorage.getItem('site');
+        if(data){
+            if(data.email == 'admin@gmail.com'){
+                navigate('/adminPage');
+            }
+            else(
+                navigate('/bookRental')
+            )
+        }
+    },[]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;

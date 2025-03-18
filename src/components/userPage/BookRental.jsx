@@ -113,9 +113,11 @@ export default function BookRental() {
       setBooksDetails(filterdBooks);
     }
     else {
-      const books = filterdBooks.filter((bookdata) => (
-        bookdata.bookTitle.toLowerCase().includes(search.toLowerCase())
-      ));
+      const searchTerms = search.toLowerCase().split(" ");
+      const books = filterdBooks.filter((bookdata) => {
+        const BookTitle = bookdata.bookTitle.toLowerCase();
+        return searchTerms.every((term)=>(BookTitle.includes(term)));
+      });
       setBooksDetails(books);
 
     }
