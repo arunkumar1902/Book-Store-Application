@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function UpdateBook() {
+    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
+
     const [bookDetails, setBookDetails] = useState({
         bookTitle:'',
         bookImage:'',
@@ -16,7 +18,7 @@ export default function UpdateBook() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/BooksDetails/${book}`);
+            const response = await axios.get(`${bookDetailsAPI}/${book}`);
             setBookDetails(response.data);
         } catch (error) {
             console.log("Error Fetching Data : " + error);
@@ -39,7 +41,7 @@ export default function UpdateBook() {
     const handleSubmit = async(event)=>{
         event.preventDefault();
         try {
-            await axios.patch(`http://localhost:3000/BooksDetails/${book}`, bookDetails);
+            await axios.patch(`${bookDetailsAPI}/${book}`, bookDetails);
             alert("Book updated Successfully");
             navigate('/adminPage');
         } catch (error) {

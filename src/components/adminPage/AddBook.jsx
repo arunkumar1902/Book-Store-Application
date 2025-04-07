@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function AddBook() {
+    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
     const [bookDetails, setBookDetails] = useState({
         bookTitle: '',
@@ -24,19 +25,16 @@ export default function AddBook() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('http://localhost:3000/BooksDetails', bookDetails)
-                .then((response) => {
-                    alert("Book Added Successfully");
-                    setBookDetails({
-                        bookTitle: '',
-                        bookImage: '',
-                        bookAuthor: '',
-                        bookStock: ''
-                    });
-                })
-                .catch((error) => {
-                    alert("Unable to Add Book : " + error);
-                })
+            await axios.post(`${bookDetailsAPI}`, bookDetails);
+
+            alert("Book Added Successfully");
+            setBookDetails({
+                bookTitle: '',
+                bookImage: '',
+                bookAuthor: '',
+                bookStock: ''
+            });
+
         } catch (error) {
             alert("Error in Adding Book : " + error);
         }
