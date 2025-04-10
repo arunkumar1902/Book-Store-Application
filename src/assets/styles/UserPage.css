@@ -43,7 +43,7 @@
 .userButtons i{
     color: rgb(133, 134, 74);
 }
-.userProfile, .userRentBook{
+.userProfile{
     width: 70%;
     margin: 10px;
     background-color: rgb(237, 237, 162);
@@ -82,4 +82,12 @@
     padding: 5px;
     border-radius: 10px;
     border: 1px solid grey;
+}
+.BooksList{
+    border: 1px solid black;
+    margin:20px;
+}
+.BooksList th, .BooksList td{
+    border: 1px solid black;
+    border-collapse:collapse;
 }

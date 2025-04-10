@@ -1,26 +1,21 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import '../../assets/styles/UserPage.css'
-// import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import UserRentedBooksDetails from './UserRentedBooksDetails';
 
 export default function BookRental() {
   const booksDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
   const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
+  const auth = useAuth();
+  const data = auth.user;
 
-  const [userId, setUserId] = useState();
   const [booksDetails, setBooksDetails] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [profile, setProfile] = useState(false);
-  const auth = useAuth();
-  // const navigate = useNavigate();
-  const [userRentBook, setUserRentBook] = useState(false);
-  const [rentedBooks, setRentedBooks] = useState([]);
   const [filterdBooks, setFilterdBooks] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const data = auth.user;
-    setUserId(data.id);
     fetchBookData();
     fetchUserDetails(data.id);
   }, []);
@@ -38,17 +33,12 @@ export default function BookRental() {
   const fetchUserDetails = async (id) => {
     try {
       const userDetailsResponse = await axios.get(`${userDetailsAPI}/${id}`);
-      const user = userDetailsResponse.data
+      const user = userDetailsResponse.data;
       setUserDetails(user);
-      setRentedBooks(user.booksRented)
       return user;
     } catch (error) {
       console.log("Error in fetching User details, Try again later");
     }
-  }
-
-  const handleProfile = () => {
-    setProfile(!profile);
   }
 
   const updateBookStock = async (bookId, bookStock) => {
@@ -64,7 +54,7 @@ export default function BookRental() {
 
   const handleRent = async (bookAllData) => {
     try {
-      const response = await fetchUserDetails(userId);
+      const response = await fetchUserDetails(userDetails.id);
       const bookIdDetails = response.booksRented.map((book) => (book.bookId));
       const checkAlreadyRentedBook = bookIdDetails.some((rentedBookId) => (rentedBookId === bookAllData.id));
 
@@ -77,20 +67,17 @@ export default function BookRental() {
             "bookId": bookAllData.id,
             "bookAuthor": bookAllData.bookAuthor,
             "bookTitle": bookAllData.bookTitle,
+            "rentedDate": new Date().toLocaleDateString(),
+            "rentedTime": new Date().toLocaleTimeString()
           }
 
           const updateRentedBook = {
             "booksRented": [...response.booksRented, newBookData],
           }
-          await axios.patch(`${userDetailsAPI}/${userId}`, updateRentedBook);
+          await axios.patch(`${userDetailsAPI}/${userDetails.id}`, updateRentedBook);
           alert("Book Rented Successfully");
           updateBookStock(bookAllData.id, bookAllData.bookStock);
-
-          setRentedBooks([
-            ...response.booksRented,
-            newBookData
-          ]);
-
+          fetchUserDetails(userDetails.id);
         } catch (error) {
           console.log("Error fetching book data : " + error);
         }
@@ -102,13 +89,8 @@ export default function BookRental() {
 
   }
 
-  const handleUserRentedBook = () => {
-    setUserRentBook(!userRentBook);
-  }
-
-  const handleSearch = async (event) => {
-    const search = event.target.value;
-    if (search.trim() === "") {
+  const handleSearch = async () => {
+    if (searchItem.trim() === "") {
       setBooksDetails(filterdBooks);
     }
     else {
@@ -127,57 +109,41 @@ export default function BookRental() {
     <div className="userpage">
       <div className='userButtons'>
 
-        <input type='search' onChange={handleSearch} placeholder='Search Book with Title' ></input>
-
-        <button onClick={handleProfile}>Profile</button>
-        {profile && <div className='userProfile'>
-          <i>Name : </i><p> {userDetails.username}</p>
-          <i>Email : </i><p>{userDetails.email}</p>
-          <button onClick={() => (auth.logout())}>Logout</button>
-        </div>}
-
-        <button onClick={handleUserRentedBook}>My Rental Books</button>
-        {userRentBook && <div className='userRentBook'>
-          {rentedBooks.map((BooksRented, index) => (
-            <div key={index}>
-              <p><i>S.No :</i> {index + 1}</p>
-              <i>Book Name : </i><p> {BooksRented.bookTitle}</p>
-              <i>Author : </i><p>{BooksRented.bookAuthor}</p>
-              <hr />
-            </div>
-          ))}
-        </div>}
+        <div className='searchbar'>
+          <input type='search' value={search} onChange={(event)=>setSearch(event.target.value)} placeholder='Search Book with Title' ></input>
+          <button onClick={handleSearch}>Search</button>
+        </div>
 
       </div>
 
       <div className='bookpage'>
-        {
-          booksDetails.length == 0 ?
-            <h2>No results found</h2> :
+          {
+            booksDetails.length == 0 ?
+              <h2>No results found</h2> :
 
-            <div>
-              <h2>Books For Rent : </h2>
-              <div className='userBookList'>
+              <div>
+                <h2>Books For Rent : </h2>
+                <div className='userBookList'>
 
-                {booksDetails.map((book) => (
-                  <div key={book.id} className='userBookContainer'>
-                    <div className='userBookImage'>
-                      <img src={book.bookImage} alt={book.bookTitle} />
-                    </div>
-                    <div className='userBookDetails'>
-                      <h4>{book.bookTitle}</h4>
-                      <div>
-                        <i>Author : {book.bookAuthor}</i><br />
-                        <i>Available Stock : {book.bookStock}</i>
+                  {booksDetails.map((book) => (
+                    <div key={book.id} className='userBookContainer'>
+                      <div className='userBookImage'>
+                        <img src={book.bookImage} alt={book.bookTitle} />
                       </div>
-                      <button disabled={book.bookStock <= 0} onClick={() => { handleRent(book) }}>Rent Now</button>
+                      <div className='userBookDetails'>
+                        <h4>{book.bookTitle}</h4>
+                        <div>
+                          <i>Author : {book.bookAuthor}</i><br />
+                          <i>Available Stock : {book.bookStock}</i>
+                        </div>
+                        <button disabled={book.bookStock <= 0} onClick={() => { handleRent(book) }}>Rent Now</button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-        }
-      </div>
+          }
+          </div>
     </div>
 
   )

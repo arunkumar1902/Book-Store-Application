@@ -9,20 +9,17 @@ import UpdateBook from './components/adminPage/UpdateBook'
 import BookRental from './components/userPage/BookRental'
 import PrivateRoute from './components/auth/PrivateRoute'
 import AuthProvider from './components/auth/AuthProvider'
+import UserRentedBooksDetails from './components/userPage/UserRentedBooksDetails'
+import Header from './components/Header'
+import UserProfile from './components/userPage/UserProfile'
 
 function App() {
 
 
   return (
     <>
-      <div className='header'>
-        <header>
-          <h1>Book Store</h1>
-        </header>
-      </div>
-
-
       <AuthProvider>
+        <Header></Header>
         <Routes>
           <Route path='/' element={<LandingPage />}></Route>
           <Route path='loginPage' element={<LoginPage />}></Route>
@@ -32,6 +29,8 @@ function App() {
             <Route path='updateBook' element={<UpdateBook></UpdateBook>}></Route>
             <Route path='addBook' element={<AddBook ></AddBook>}></Route>
             <Route path='bookRental' element={<BookRental></BookRental>}></Route>
+            <Route path='userRentedBooksDetails' element={<UserRentedBooksDetails></UserRentedBooksDetails>}></Route>
+            <Route path='userProfile' element={<UserProfile></UserProfile>}></Route>
           </Route>
         </Routes>
       </AuthProvider>

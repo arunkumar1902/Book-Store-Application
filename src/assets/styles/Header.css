@@ -1,0 +1,18 @@
+.header{
+    display: flex;
+    padding: 5px;
+    font-style: italic;
+    text-align: center;
+    background-color: rgb(218, 218, 129);
+}
+.navigation{
+    display: flex;
+    padding: 13px;
+    width: 85%;
+    justify-content: space-between;
+}
+.details, .profile{
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+}

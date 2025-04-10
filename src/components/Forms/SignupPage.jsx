@@ -112,7 +112,7 @@ export default function SignupPage() {
                     alert('User already Exist, try again');
                 }
                 else {
-                    const updatedData = { ...data, booksRented: [] }
+                    const updatedData = { ...data, booksRented: [], returnedBooks: []  }
                     await axios.post(`${userDetailsAPI}`, updatedData);
                     alert('Account Created Successfully, Login now');
                     navigate('/loginPage');
