@@ -12,6 +12,7 @@ import AuthProvider from './components/auth/AuthProvider'
 import UserRentedBooksDetails from './components/userPage/UserRentedBooksDetails'
 import Header from './components/Header'
 import UserProfile from './components/userPage/UserProfile'
+import SearchProduct from './components/searchProduct/SearchProduct'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path='bookRental' element={<BookRental></BookRental>}></Route>
             <Route path='userRentedBooksDetails' element={<UserRentedBooksDetails></UserRentedBooksDetails>}></Route>
             <Route path='userProfile' element={<UserProfile></UserProfile>}></Route>
+            <Route path='searchProduct' element={<SearchProduct></SearchProduct>}></Route>
           </Route>
         </Routes>
       </AuthProvider>

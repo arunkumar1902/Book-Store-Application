@@ -9,28 +9,20 @@ export default function Header() {
     const data = auth.user;
     const navigate = useNavigate();
 
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
-    const [books, setBooks] = useState({});
-
-    useEffect(() => {
-        if (data) {
-            fetchBookDetails();
-        }
-    }, []);
-
-    const fetchBookDetails = async () => {
-        try {
-            const response = await axios.get(`${bookDetailsAPI}`);
-            const booksData = response.data;
-            setBooks(booksData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const [searchItem, setSearchItem] = useState("");
 
     const handleProfile = () => {
         navigate('/userProfile')
+    }
+    
+    const handleSearch = ()=>{
+        if(searchItem.trim() === ""){
+            console.log("No search data");
+        }
+        else{
+            navigate('/searchProduct', {state:{ searchItem:searchItem}})
+        }
     }
 
     return (
@@ -45,10 +37,18 @@ export default function Header() {
                         <h4>Contact</h4>
                     </div>
 
-                    {/* <input type='search' placeholder='Search Book with Title' ></input> */}
+                    <div className='search'>
+                        <input 
+                            type='search' 
+                            value={searchItem} 
+                            placeholder='Search Book with Title' 
+                            onChange={(event)=>setSearchItem(event.target.value)}
+                        ></input>
+                        <button onClick={handleSearch}>Search</button>
+                    </div>
 
                     <div className='profile'>
-                        <button onClick={handleProfile}>Profile</button>
+                        <Link to='/userProfile'>Profile</Link>
                         <button onClick={() => (auth.logout())}>Logout</button>
                     </div>
 

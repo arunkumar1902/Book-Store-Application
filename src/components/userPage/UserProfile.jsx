@@ -27,8 +27,8 @@ export default function UserProfile() {
         <div>
             <h4>Profile</h4>
             <div className='userProfile'>
-                <i>Name : </i><p> {data.username}</p>
-                <i>Email : </i><p>{data.email}</p>
+                <p>Name :  {data.username}</p>
+                <p>Email : {data.email}</p>
             </div>
 
             <h4>Rented Books </h4>

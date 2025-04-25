@@ -1,16 +1,19 @@
 import React from 'react'
 import axios from 'axios';
+import { useAuth } from '../auth/AuthProvider';
 
 export default function UserRentedBooksDetails({ userData, fetchUser }) {
     const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
     const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
+    const auth = useAuth();
     
     const updateStock = async (bookid, bookStock)=>{
         try {
             await axios.patch(`${bookDetailsAPI}/${bookid}`, {
                 "bookStock": bookStock + 1
             });
+            auth.fetchBookData();
         } catch (error) {
             console.log(error);
         }
@@ -28,7 +31,6 @@ export default function UserRentedBooksDetails({ userData, fetchUser }) {
                 "returnTime": new Date().toLocaleTimeString()
             }
             const update = userData.booksRented.filter((book) => (book.bookId !== bookData.bookId));
-            console.log(update);
 
             const updateReturnedBooks = {
                 "booksRented": update,
@@ -60,12 +62,15 @@ export default function UserRentedBooksDetails({ userData, fetchUser }) {
                 ? <p>No Books Rented</p>
                 : <div className='BooksList'>
                     <table>
+                        <thead>
                         <tr>
                             <th>S.no</th>
                             <th>Book Title</th>
                             <th>Book Author</th>
                             <th>Return</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         {userData.booksRented.map((BooksRented, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
@@ -74,6 +79,7 @@ export default function UserRentedBooksDetails({ userData, fetchUser }) {
                                 <td><button onClick={() => returnBook(BooksRented)}>Return</button></td>
                             </tr>
                         ))}
+                        </tbody>
                     </table>
                 </div>
             }
