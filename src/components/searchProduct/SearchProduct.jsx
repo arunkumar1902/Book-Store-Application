@@ -18,7 +18,7 @@ export default function SearchProduct() {
     });
 
     return (
-        <div style={{margin:"30px"}}>
+        <div style={{margin:"30px", minHeight:"60vh"}}>
             <p>Result based on your search : {searchItem}</p>
             <br />
             {filteredBooks.length == 0?<p>No result found</p>:<BookDetails booksDetails={filteredBooks}></BookDetails>}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../assets/styles/UserPage.css'
 import { useAuth } from '../auth/AuthProvider';
 import BookDetails from '../bookDetails/BookDetails';
@@ -6,6 +6,10 @@ import BookDetails from '../bookDetails/BookDetails';
 export default function BookRental() {
   const auth = useAuth();
   const booksDetails = auth.bookDetails;
+
+  useEffect(()=>{
+    auth.fetchBookData();
+  },[])
 
   return (
 

@@ -1,0 +1,30 @@
+.User{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    min-height: 80vh;
+}
+.UserDiv{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height:max-content;
+}
+.div{
+    display: flex;
+    padding: 10px;
+}
+.div span{
+    cursor: pointer;
+    background-color: rgb(237, 230, 174);
+    padding: 10px;
+    border-radius: 5px;
+}
+.div span:hover{
+    text-decoration: underline;
+}
+.UserProfileContent{
+    padding: 10px;
+    width: fit-content;
+}

@@ -44,3 +44,10 @@
 .profile a:hover{
     text-decoration: underline;
 }
+.details a{
+    text-decoration: none;
+    color: black;
+}
+.details a:hover{
+    text-decoration: underline;
+}

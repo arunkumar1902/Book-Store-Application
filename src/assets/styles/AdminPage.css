@@ -1,5 +1,6 @@
 .adminpage{
     display: flex;
+    min-height: 80vh;
 }
 .adminButtons{
     width: 20%;

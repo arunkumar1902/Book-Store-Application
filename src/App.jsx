@@ -2,7 +2,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import SignupPage from './components/Forms/SignupPage'
 import LoginPage from './components/Forms/LoginPage'
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/home/LandingPage'
 import AdminPage from './components/adminPage/AdminPage'
 import AddBook from './components/adminPage/AddBook'
 import UpdateBook from './components/adminPage/UpdateBook'
@@ -10,9 +10,10 @@ import BookRental from './components/userPage/BookRental'
 import PrivateRoute from './components/auth/PrivateRoute'
 import AuthProvider from './components/auth/AuthProvider'
 import UserRentedBooksDetails from './components/userPage/UserRentedBooksDetails'
-import Header from './components/Header'
+import Header from './components/home/Header'
 import UserProfile from './components/userPage/UserProfile'
 import SearchProduct from './components/searchProduct/SearchProduct'
+import Footer from './components/home/Footer'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
             <Route path='searchProduct' element={<SearchProduct></SearchProduct>}></Route>
           </Route>
         </Routes>
+        <Footer></Footer>
       </AuthProvider>
     </>
   )

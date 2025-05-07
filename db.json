@@ -17,206 +17,28 @@
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:30:31 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:33:03 PM"
+          "rentedDate": "5/7/2025",
+          "rentedTime": "3:50:09 PM"
         }
       ],
       "returnedBooks": [
         {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/10/2025",
-          "rentedTime": "11:04:47 PM",
-          "returnDate": "4/10/2025",
-          "returnTime": "11:04:54 PM"
-        },
-        {
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/10/2025",
-          "rentedTime": "11:04:16 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:51:42 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:49:45 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:51:44 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:51:53 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:53:45 PM"
-        },
-        {
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
           "rentedDate": "4/25/2025",
-          "rentedTime": "4:52:43 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:53:48 PM"
-        },
-        {
-          "bookId": 3,
-          "bookAuthor": " David M. Burton",
-          "bookTitle": "Elementary Number Theory | 7th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:53:29 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:53:50 PM"
-        },
-        {
-          "bookId": 4,
-          "bookAuthor": "ERIC, MATTHES",
-          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:53:33 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:53:52 PM"
+          "rentedTime": "5:30:31 PM",
+          "returnDate": "5/7/2025",
+          "returnTime": "11:02:52 AM"
         },
         {
           "bookId": 2,
           "bookAuthor": "Yashavant Kanetkar ",
           "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:54:05 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "4:54:15 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:55:41 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:02:17 PM"
-        },
-        {
-          "bookId": 3,
-          "bookAuthor": " David M. Burton",
-          "bookTitle": "Elementary Number Theory | 7th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "4:56:08 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:02:21 PM"
-        },
-        {
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:02:12 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:02:25 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:09:57 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:10:02 PM"
-        },
-        {
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:11:01 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:11:09 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:11:04 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:11:12 PM"
-        },
-        {
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:12:33 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:13:16 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:12:41 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:13:18 PM"
-        },
-        {
-          "bookId": 3,
-          "bookAuthor": " David M. Burton",
-          "bookTitle": "Elementary Number Theory | 7th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:13:08 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:13:21 PM"
-        },
-        {
-          "bookId": 6,
-          "bookAuthor": "Walter Rudin ",
-          "bookTitle": "Real and Complex Analysis | 3rd Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:13:11 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:13:23 PM"
-        },
-        {
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:14:34 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:28:50 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:14:38 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:28:53 PM"
-        },
-        {
-          "bookId": 4,
-          "bookAuthor": "ERIC, MATTHES",
-          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:15:01 PM",
-          "returnDate": "4/25/2025",
-          "returnTime": "5:28:56 PM"
+          "rentedDate": "5/7/2025",
+          "rentedTime": "11:05:17 AM",
+          "returnDate": "5/7/2025",
+          "returnTime": "3:39:41 PM"
         }
       ],
       "id": 2
@@ -234,7 +56,7 @@
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
-      "bookStock": 3,
+      "bookStock": 4,
       "id": 2
     },
     {
