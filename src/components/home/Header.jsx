@@ -23,7 +23,7 @@ export default function Header() {
     return (
         <div>
             <header className='header'>
-                <h1>Book Store</h1>
+                <h2>Book&nbsp;Store</h2>
 
                 {data && <div className='navigation' >
 

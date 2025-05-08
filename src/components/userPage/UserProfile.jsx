@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../../assets/styles/Profile.css'
 import UserReturnedBooks from './UserReturnedBooks';
 import { Link } from 'react-router-dom';
+import ProfileEdit from './ProfileEdit';
 
 export default function UserProfile() {
     const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
@@ -61,7 +62,7 @@ export default function UserProfile() {
             <div className='UserDiv'>
                 <div className='div'>
                     <span onClick={handleProfile}>Profile</span> &emsp;
-                    {data.email != "admin@gmail.com" &&
+                    {data.email !== "admin@gmail.com" &&
                         <>
                             <span onClick={handleRentedBooks}>Rented Books</span>&emsp;
                             <span onClick={handleReturnedBooks}>Returned Books</span>
@@ -69,14 +70,11 @@ export default function UserProfile() {
                     }
                 </div>
                 <div className='UserProfileContent'>
-                    {profile && <div className='userProfile'>
-                        <p>Name :  {data.username}</p><br />
-                        <p>Email : {data.email}</p>
-                    </div>}
+                    {profile && <div><h4>My Details : <br /><br /></h4> <ProfileEdit userData={userData} fetchUser={fetchUser}></ProfileEdit></div>}
 
-                    {rentedBooks && <div><p>Currently Rented Books : <br /><br /></p><UserRentedBooksDetails userData={userData} fetchUser={fetchUser}></UserRentedBooksDetails></div>}
+                    {rentedBooks && <div><h4>Currently Rented Books : <br /><br /></h4><UserRentedBooksDetails userData={userData} fetchUser={fetchUser}></UserRentedBooksDetails></div>}
 
-                    {returnedBooks && <div><p>Returned Books Details : </p><UserReturnedBooks userData={userData}></UserReturnedBooks></div>}
+                    {returnedBooks && <div><h4>Returned Books Details : </h4><UserReturnedBooks userData={userData}></UserReturnedBooks></div>}
                 </div>
             </div>
         </div>
