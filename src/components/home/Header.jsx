@@ -43,6 +43,7 @@ export default function Header() {
                     </div>
 
                     <div className='profile'>
+                        <Link to='/userCart'>Cart</Link>
                         <Link to='/userProfile'>Profile</Link>
                         <button onClick={() => (auth.logout())}>Logout</button>
                     </div>

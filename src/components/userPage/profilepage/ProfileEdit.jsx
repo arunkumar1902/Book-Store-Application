@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useAuth } from '../../auth/AuthProvider';
 
-export default function ProfileEdit({ userData, fetchUser }) {
+export default function ProfileEdit({ userData }) {
     const USERDETAILSAPI = import.meta.env.VITE_USERDETAILS;
+    const auth = useAuth();
+
     const [changePassword, setChangePassword] = useState(true);
     const [editingNewPassword, setEditingNewPassword] = useState(false);
 
@@ -50,6 +53,7 @@ export default function ProfileEdit({ userData, fetchUser }) {
         const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
+        //password validation
         if (!passwordPattern.test(updatedPassword.password)) {
             setError((prev) => ({
                 ...prev,
@@ -64,6 +68,7 @@ export default function ProfileEdit({ userData, fetchUser }) {
             }));
         }
 
+        //confirm password validation
         if (updatedPassword.password !== updatedPassword.confirmPassword) {
             setError((prev) => ({
                 ...prev,
@@ -95,7 +100,7 @@ export default function ProfileEdit({ userData, fetchUser }) {
                     password: '',
                     confirmPassword: ''
                 });
-                fetchUser(userData.id);
+                auth.fetchUserData(userData.id);
             }
             catch(error){
                 alert("Error occurred, try again: ", error);

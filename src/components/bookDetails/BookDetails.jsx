@@ -19,6 +19,7 @@ export default function BookDetails({ booksDetails }) {
 
       if (checkAlreadyRentedBook) {
         alert("Book Already Rented");
+        setIsAlreadyInCart(true);
       }
       else {
         try {
@@ -64,13 +65,40 @@ export default function BookDetails({ booksDetails }) {
   }
 
   const handleDelete = async (bookId) => {
-      try {
-        await axios.delete(`${BOOK_DETAILS}/${bookId}`);
-        alert("Book deleted Successfully");
-        auth.fetchBookData();
-      } catch (error) {
-        console.log("Error in Deleting Book : " + error);
+    try {
+      await axios.delete(`${BOOK_DETAILS}/${bookId}`);
+      alert("Book deleted Successfully");
+      auth.fetchBookData();
+    } catch (error) {
+      console.log("Error in Deleting Book : " + error);
+    }
+  }
+
+  const handleCart = async (book) => {
+    try {
+      const response = await auth.fetchUserData(data.id);
+      const isBookAlreadyInCart = response.cartDetails.some((cartBook) => (cartBook.bookId === book.id));
+
+      if (isBookAlreadyInCart) {
+        console.log("Already in cart");
       }
+      else {
+        const updatedCartDetails = {
+          "cartDetails": [
+            ...response.cartDetails,
+            {
+              "bookId": book.id
+            }
+          ]
+        }
+        await axios.patch(`${USER_DETAILS}/${data.id}`, updatedCartDetails)
+        await auth.fetchUserData(data.id);
+        alert("Book Added to cart");
+        
+      }
+    } catch (error) {
+      alert("Error Occurred : " + error);
+    }
   }
 
   return (
@@ -78,16 +106,21 @@ export default function BookDetails({ booksDetails }) {
       <h2>Books For Rent : </h2>
       <div className='userBookList'>
 
-        {booksDetails.map((book) => (
+        {booksDetails.map((book) => {
+          const inCart = data.cartDetails.some(cartBook => cartBook.bookId === book.id);
+          return(
           <div key={book.id} className='userBookContainer'>
             <div className='userBookImage'>
               <img src={book.bookImage} alt={book.bookTitle} />
             </div>
             <div className='userBookDetails'>
               <h4>{book.bookTitle}</h4>
+              <br />
               <div>
                 <i>Author : {book.bookAuthor}</i><br />
+                <br />
                 <i>Available Stock : {book.bookStock}</i>
+                <br /><br />
               </div>
               {data.email === "admin@gmail.com" ?
 
@@ -96,11 +129,20 @@ export default function BookDetails({ booksDetails }) {
                   <button onClick={() => { handleDelete(book.id) }}>Delete Book</button>
                 </div>
 
-                : <button disabled={book.bookStock <= 0} onClick={() => { handleRent(book) }}>Rent Now</button>
+                :
+                <div>
+                  <button 
+                    disabled={inCart} 
+                    onClick={() => { handleCart(book) }}
+                  >
+                    {inCart? <span style={{color:'brown'}}>Item in Cart</span>:"Add to Cart"}
+                  </button>
+                  <button disabled={book.bookStock <= 0} onClick={() => { handleRent(book) }}>{book.bookStock <= 0 ? <span style={{ color: 'brown' }}>Out of Stock</span> : "Rent Now"}</button>
+                </div>
               }
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </div>
   )

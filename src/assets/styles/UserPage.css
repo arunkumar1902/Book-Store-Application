@@ -4,26 +4,26 @@
 .userpage h2{
     padding: 30px;
 }
-.userpage button{
+.userBookList button{
     cursor: pointer;
     padding: 8px;
-    width: 70%;
+    width: 40%;
     background-color: beige;
     border: 1px solid rgb(178, 178, 163);
     color: black;
-    margin: 10px;
+    margin-right: 10px;
     border-radius: 10px;
 }
-.userpage button:disabled{
+.userBookList button:disabled{
     background-color: #fffffe;
     color: rgb(254, 235, 235);
 }
-.userpage button:disabled:hover{
+.userBookList button:disabled:hover{
     background-color: #fffffe;    
     color: rgb(254, 235, 235);
 
 }
-.userpage button:hover{
+.userBookList button:hover{
     background-color: rgb(252, 158, 7); 
     color: white;
 }

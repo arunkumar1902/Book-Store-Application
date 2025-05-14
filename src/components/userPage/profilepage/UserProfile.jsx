@@ -1,36 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../auth/AuthProvider';
+import { useAuth } from '../../auth/AuthProvider';
 import UserRentedBooksDetails from './UserRentedBooksDetails';
-import axios from 'axios';
-import '../../assets/styles/Profile.css'
+import '../../../assets/styles/Profile.css'
 import UserReturnedBooks from './UserReturnedBooks';
 import { Link } from 'react-router-dom';
 import ProfileEdit from './ProfileEdit';
 
 export default function UserProfile() {
-    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
     const auth = useAuth();
     const data = auth.user;
-    const [userData, setUserData] = useState({});
 
     const [profile, setProfile] = useState(true);
     const [rentedBooks, setRentedBooks] = useState(false);
     const [returnedBooks, setReturnedBooks] = useState(false);
 
     useEffect(() => {
-        fetchUser(data.id);
+        auth.fetchUserData(data.id);
     }, []);
-
-    const fetchUser = async (id) => {
-        try {
-            const response = await axios.get(`${userDetailsAPI}/${id}`);
-            const user = response.data;
-            setUserData(user);
-            return user;
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const handleProfile = () => {
         setProfile(true);
@@ -70,11 +56,11 @@ export default function UserProfile() {
                     }
                 </div>
                 <div className='UserProfileContent'>
-                    {profile && <div><h4>My Details : <br /><br /></h4> <ProfileEdit userData={userData} fetchUser={fetchUser}></ProfileEdit></div>}
+                    {profile && <div><h4>My Details : <br /><br /></h4> <ProfileEdit userData={data} ></ProfileEdit></div>}
 
-                    {rentedBooks && <div><h4>Currently Rented Books : <br /><br /></h4><UserRentedBooksDetails userData={userData} fetchUser={fetchUser}></UserRentedBooksDetails></div>}
+                    {rentedBooks && <div><h4>Currently Rented Books : <br /><br /></h4><UserRentedBooksDetails userData={data}></UserRentedBooksDetails></div>}
 
-                    {returnedBooks && <div><h4>Returned Books Details : </h4><UserReturnedBooks userData={userData}></UserReturnedBooks></div>}
+                    {returnedBooks && <div><h4>Returned Books Details : </h4><UserReturnedBooks userData={data}></UserReturnedBooks></div>}
                 </div>
             </div>
         </div>
