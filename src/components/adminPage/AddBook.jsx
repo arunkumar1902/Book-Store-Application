@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import '../../assets/styles/Forms.css'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
 
 
 export default function AddBook() {
     const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
+    const auth = useAuth();
 
     const [bookDetails, setBookDetails] = useState({
         bookTitle: '',
@@ -34,6 +36,7 @@ export default function AddBook() {
                 bookAuthor: '',
                 bookStock: ''
             });
+            await auth.fetchBookData();
 
         } catch (error) {
             alert("Error in Adding Book : " + error);

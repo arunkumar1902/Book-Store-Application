@@ -3,12 +3,13 @@ import { useAuth } from '../../auth/AuthProvider';
 import UserRentedBooksDetails from './UserRentedBooksDetails';
 import '../../../assets/styles/Profile.css'
 import UserReturnedBooks from './UserReturnedBooks';
-import { Link } from 'react-router-dom';
 import ProfileEdit from './ProfileEdit';
 
 export default function UserProfile() {
     const auth = useAuth();
     const data = auth.user;
+
+    const ADMIN_EMAIL = import.meta.env.VITE_ADMINEMAIL;
 
     const [profile, setProfile] = useState(true);
     const [rentedBooks, setRentedBooks] = useState(false);
@@ -38,17 +39,11 @@ export default function UserProfile() {
 
     return (
         <div className='User'>
-            <div className='back'>
-                {data.email === 'admin@gmail.com' ? 
-                <Link to='/adminPage'>Back</Link>
-                : <Link to='/bookRental'>Back</Link>
-            }
-            </div>
 
             <div className='UserDiv'>
                 <div className='div'>
                     <span onClick={handleProfile}>Profile</span> &emsp;
-                    {data.email !== "admin@gmail.com" &&
+                    {data.email !== ADMIN_EMAIL &&
                         <>
                             <span onClick={handleRentedBooks}>Rented Books</span>&emsp;
                             <span onClick={handleReturnedBooks}>Returned Books</span>

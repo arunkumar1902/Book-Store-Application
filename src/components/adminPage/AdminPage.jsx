@@ -48,30 +48,40 @@ export default function AdminPage() {
         <button onClick={handleAddBook}>Add New Book</button>
       </div>
 
-
-
       <div className='booksList'>
         <h2>List of Books</h2>
+        <br />
+        
+        <table>
 
-        {booksData.map((books) => (
-          <div className='booksContainer' key={books.id}>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Image</th>
+              <th>Book Title</th>
+              <th>Author</th>
+              <th>Stocks Available</th>
+              <th>Update Book Details</th>
+              <th>Delete Book</th>
+            </tr>
+          </thead>
 
-            <div className='bookImage'>
-              <img src={books.bookImage} alt={books.bookTitle}></img>
-            </div>
+          {booksData.map((books, index) => (
+            <tbody key={books.id}>
+              <tr>
+                <td>{index + 1}</td>
+                <td className='bookImage'><img src={books.bookImage} alt={books.bookTitle}></img></td>
+                <td><h4>{books.bookTitle}</h4></td>
+                <td><p>{books.bookAuthor}</p></td>
+                <td><p>{books.bookStock}</p></td>
+                <td><button onClick={() => { handleUpdate(books.id) }}>Update</button></td>
+                <td><button onClick={() => { handleDelete(books) }}>Delete</button></td>
+              </tr>
+            </tbody>
 
-            <div className='bookDetails'>
-              <h4>{books.bookTitle}</h4>
-              <p>Author: {books.bookAuthor}</p>
-              <p>Stock : {books.bookStock}</p>
-              <div>
-                <button onClick={() => { handleUpdate(books.id) }}>Update Book</button>
-                <button onClick={() => { handleDelete(books) }}>Delete Book</button>
-              </div>
-            </div>
-          </div>
+          ))}
 
-        ))}
+        </table>
       </div>
 
     </div>

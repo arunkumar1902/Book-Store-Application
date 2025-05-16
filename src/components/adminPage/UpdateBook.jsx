@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
 
 export default function UpdateBook() {
     const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
+    const auth = useAuth();
 
     const [bookDetails, setBookDetails] = useState({
         bookTitle:'',
@@ -43,6 +45,7 @@ export default function UpdateBook() {
         try {
             await axios.patch(`${bookDetailsAPI}/${book}`, bookDetails);
             alert("Book updated Successfully");
+            await auth.fetchBookData();
             navigate('/adminPage');
         } catch (error) {
             console.log("Error in Submitting : " + error);

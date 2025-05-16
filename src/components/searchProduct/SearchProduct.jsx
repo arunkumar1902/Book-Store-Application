@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import BookDetails from '../bookDetails/BookDetails';
 import { useAuth } from '../auth/AuthProvider';
 
@@ -10,7 +10,7 @@ export default function SearchProduct() {
     const auth = useAuth();
     const books = auth.bookDetails;
 
-    const searchTerms = Array.from(searchItem.toLowerCase());
+    const searchTerms = searchItem.split(" ");
 
     const filteredBooks = books.filter((bookData) => {
         const BookTitle = bookData.bookTitle.toLowerCase();
