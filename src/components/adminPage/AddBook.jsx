@@ -3,10 +3,10 @@ import axios from 'axios'
 import '../../assets/styles/Forms.css'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import { BOOKDETAILSAPI } from '../../config/env';
 
 
 export default function AddBook() {
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
     const auth = useAuth();
 
     const [bookDetails, setBookDetails] = useState({
@@ -27,7 +27,7 @@ export default function AddBook() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(`${bookDetailsAPI}`, bookDetails);
+            await axios.post(`${BOOKDETAILSAPI}`, bookDetails);
 
             alert("Book Added Successfully");
             setBookDetails({

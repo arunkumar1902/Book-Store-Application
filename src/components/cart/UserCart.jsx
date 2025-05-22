@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import axios from 'axios';
 import '../../assets/styles/UserCart.css'
+import { USERDETAILSAPI } from '../../config/env';
 
 export default function UserCart() {
   const auth = useAuth();
   const data = auth.user;
   const bookDetails = auth.bookDetails;
-
-  const USER_DETAILS = import.meta.env.VITE_USERDETAILS;
 
   const [cartItems, setCartBooks] = useState([]);
 
@@ -25,7 +24,7 @@ export default function UserCart() {
     const filteredCart = data.cartDetails.filter((cartBook => cartBook.bookId !== removeBookId));
 
     try {
-      await axios.patch(`${USER_DETAILS}/${data.id}`, {
+      await axios.patch(`${USERDETAILSAPI}/${data.id}`, {
         "cartDetails": filteredCart
       });
       auth.fetchUserData(data.id);

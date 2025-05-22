@@ -2,19 +2,16 @@ import React from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ADMINEMAIL, BOOKDETAILSAPI, USERDETAILSAPI } from '../../config/env';
 
 export default function BookDetails({ booksDetails }) {
   const auth = useAuth();
   const data = auth.user;
   const navigate = useNavigate();
 
-  const USER_DETAILS = import.meta.env.VITE_USERDETAILS;
-  const BOOK_DETAILS = import.meta.env.VITE_BOOKDETAILS;
-  const ADMIN_EMAIL = import.meta.env.VITE_ADMINEMAIL;
-
   const handleRent = async (bookAllData) => {
     try {
-      const response = await axios.get(`${USER_DETAILS}/${data.id}`);
+      const response = await axios.get(`${USERDETAILSAPI}/${data.id}`);
       const bookIdDetails = response.data.booksRented.map((book) => (book.bookId));
       const checkAlreadyRentedBook = bookIdDetails.some((rentedBookId) => (rentedBookId === bookAllData.id));
 
@@ -34,7 +31,7 @@ export default function BookDetails({ booksDetails }) {
         const updateRentedBook = {
           "booksRented": [...response.data.booksRented, newBookData],
         }
-        await axios.patch(`${USER_DETAILS}/${data.id}`, updateRentedBook);
+        await axios.patch(`${USERDETAILSAPI}/${data.id}`, updateRentedBook);
         alert("Book Rented Successfully");
         updateBookStock(bookAllData.id, bookAllData.bookStock);
       }
@@ -47,7 +44,7 @@ export default function BookDetails({ booksDetails }) {
 
   const updateBookStock = async (bookId, bookStock) => {
     try {
-      await axios.patch(`${BOOK_DETAILS}/${bookId}`, {
+      await axios.patch(`${BOOKDETAILSAPI}/${bookId}`, {
         "bookStock": bookStock - 1
       });
       await auth.fetchBookData();
@@ -63,7 +60,7 @@ export default function BookDetails({ booksDetails }) {
 
   const handleDelete = async (bookId) => {
     try {
-      await axios.delete(`${BOOK_DETAILS}/${bookId}`);
+      await axios.delete(`${BOOKDETAILSAPI}/${bookId}`);
       alert("Book deleted Successfully");
       auth.fetchBookData();
     } catch (error) {
@@ -88,7 +85,7 @@ export default function BookDetails({ booksDetails }) {
             }
           ]
         }
-        await axios.patch(`${USER_DETAILS}/${data.id}`, updatedCartDetails)
+        await axios.patch(`${USERDETAILSAPI}/${data.id}`, updatedCartDetails)
         await auth.fetchUserData(data.id);
         alert("Book Added to cart");
         
@@ -121,7 +118,7 @@ export default function BookDetails({ booksDetails }) {
                 </div>
                 <br />
 
-                {data.email === ADMIN_EMAIL ?
+                {data.email === ADMINEMAIL ?
 
                   <div>
                     <button onClick={() => { handleUpdate(book.id) }}>Update Book</button>

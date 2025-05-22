@@ -4,12 +4,11 @@ import UserRentedBooksDetails from './UserRentedBooksDetails';
 import '../../../assets/styles/Profile.css'
 import UserReturnedBooks from './UserReturnedBooks';
 import ProfileEdit from './ProfileEdit';
+import { ADMINEMAIL } from '../../../config/env';
 
 export default function UserProfile() {
     const auth = useAuth();
     const data = auth.user;
-
-    const ADMIN_EMAIL = import.meta.env.VITE_ADMINEMAIL;
 
     const [profile, setProfile] = useState(true);
     const [rentedBooks, setRentedBooks] = useState(false);
@@ -43,7 +42,7 @@ export default function UserProfile() {
             <div className='UserDiv'>
                 <div className='div'>
                     <span onClick={handleProfile}>Profile</span> &emsp;
-                    {data.email !== ADMIN_EMAIL &&
+                    {data.email !== ADMINEMAIL &&
                         <>
                             <span onClick={handleRentedBooks}>Rented Books</span>&emsp;
                             <span onClick={handleReturnedBooks}>Returned Books</span>

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useAuth } from '../../auth/AuthProvider';
+import { PASSWORDPATTERN, USERDETAILSAPI } from '../../../config/env';
 
 export default function ProfileEdit({ userData }) {
-    const USERDETAILSAPI = import.meta.env.VITE_USERDETAILS;
     const auth = useAuth();
 
     const [changePassword, setChangePassword] = useState(true);
@@ -50,11 +50,10 @@ export default function ProfileEdit({ userData }) {
     }
 
     const validation = () => {
-        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
         //password validation
-        if (!passwordPattern.test(updatedPassword.password)) {
+        if (!PASSWORDPATTERN.test(updatedPassword.password)) {
             setError((prev) => ({
                 ...prev,
                 passwordError: "Password must contain atleast 1 Special Character, 1 number, 1 uppercase and 1 lowercase alphabet with atleast 7 characters"

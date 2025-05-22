@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/styles/Header.css'
+import { ADMINEMAIL } from '../../config/env';
 
 export default function Header() {
     const auth = useAuth();
     const data = auth.user;
     const navigate = useNavigate();
-
-    const ADMIN_EMAIL = import.meta.env.VITE_ADMINEMAIL;
 
     const [searchItem, setSearchItem] = useState("");
 
@@ -30,7 +29,7 @@ export default function Header() {
 
                     <div className='details'>
                         <div>
-                            {data.email === ADMIN_EMAIL ?
+                            {data.email === ADMINEMAIL ?
                                 <Link to='/adminPage'>Home</Link>
                                 : <Link to='/bookRental'>Home</Link>
                             }
@@ -49,7 +48,7 @@ export default function Header() {
                         <button onClick={handleSearch}>Search</button>
                     </div>
 
-                    {data.email === ADMIN_EMAIL ?
+                    {data.email === ADMINEMAIL ?
                         <div className='profile'>
                             <span>Admin Login</span>
                             <button onClick={() => (auth.logout())}>Logout</button>

@@ -3,10 +3,10 @@ import axios from 'axios';
 import '../../assets/styles/AdminPage.css'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import { BOOKDETAILSAPI } from '../../config/env';
 
 
 export default function AdminPage() {
-  const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
   const navigate = useNavigate();
   const auth = useAuth();
@@ -28,7 +28,7 @@ export default function AdminPage() {
   const handleDelete = async (book) => {
       if(confirm(`Do you want the Delete the book? : ${book.bookTitle}`)){
         try {
-          await axios.delete(`${bookDetailsAPI}/${book.id}`);
+          await axios.delete(`${BOOKDETAILSAPI}/${book.id}`);
           auth.fetchBookData();
           alert("Book deleted Successfully");
         } catch (error) {

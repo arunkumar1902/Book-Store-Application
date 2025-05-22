@@ -3,11 +3,10 @@ import '../../assets/styles/Forms.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../auth/AuthProvider'
+import { ADMINEMAIL, EMAILPATTERN, PASSWORDPATTERN, USERDETAILSAPI } from '../../config/env'
 
 
 export default function LoginPage() {
-    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
-    const adminEmail = import.meta.env.VITE_ADMINEMAIL;
 
     const auth = useAuth();
     const navigate = useNavigate();
@@ -26,7 +25,7 @@ export default function LoginPage() {
         const data = auth.user;
         if(data){
             console.log(data.username);
-            if(data.email === adminEmail){
+            if(data.email === ADMINEMAIL){
                 navigate('/adminPage');
             }
             else{
@@ -44,12 +43,10 @@ export default function LoginPage() {
     };
 
     const validation = () => {
-        const emailPattern = new RegExp(import.meta.env.VITE_EMAILPATTERN);
-        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
         //email validation
-        if (!emailPattern.test(data.email)) {
+        if (!EMAILPATTERN.test(data.email)) {
             setError((prevError) => ({
                 ...prevError,
                 emailError: 'Enter valid Email ID'
@@ -63,7 +60,7 @@ export default function LoginPage() {
         }
 
         //password validation
-        if (data.password === "" || !passwordPattern.test(data.password)) {
+        if (data.password === "" || !PASSWORDPATTERN.test(data.password)) {
             setError((prevError) => ({
                 ...prevError,
                 passwordError: "Password must contain atleast 1 Special Character, 1 number, 1 uppercase and 1 lowercase alphabet with atleast 7 characters"
@@ -85,7 +82,7 @@ export default function LoginPage() {
         event.preventDefault();
         if (validation()) {
             try {
-                const dbResponse = await axios.get(`${userDetailsAPI}`);
+                const dbResponse = await axios.get(`${USERDETAILSAPI}`);
                 const existingData = dbResponse.data;
                 // find the email and password is exist in db
                 const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));

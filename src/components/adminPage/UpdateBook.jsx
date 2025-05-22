@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import { BOOKDETAILSAPI } from '../../config/env';
 
 export default function UpdateBook() {
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
     const auth = useAuth();
 
     const [bookDetails, setBookDetails] = useState({
@@ -20,7 +20,7 @@ export default function UpdateBook() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`${bookDetailsAPI}/${book}`);
+            const response = await axios.get(`${BOOKDETAILSAPI}/${book}`);
             setBookDetails(response.data);
         } catch (error) {
             console.log("Error Fetching Data : " + error);
@@ -43,7 +43,7 @@ export default function UpdateBook() {
     const handleSubmit = async(event)=>{
         event.preventDefault();
         try {
-            await axios.patch(`${bookDetailsAPI}/${book}`, bookDetails);
+            await axios.patch(`${BOOKDETAILSAPI}/${book}`, bookDetails);
             alert("Book updated Successfully");
             await auth.fetchBookData();
             navigate('/adminPage');
