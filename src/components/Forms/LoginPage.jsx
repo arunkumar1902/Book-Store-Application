@@ -3,7 +3,7 @@ import '../../assets/styles/Forms.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuth } from '../auth/AuthProvider'
-import { ADMINEMAIL, EMAILPATTERN, PASSWORDPATTERN, USERDETAILSAPI } from '../../config/env'
+import { EMAILPATTERN, PASSWORDPATTERN, USERDETAILSAPI } from '../../../public/config/env'
 
 
 export default function LoginPage() {
@@ -108,14 +108,18 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email">Email</label>
-                        <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
+                        <input type="email" id='email' name='email' placeholder='Enter Your Email' value={data.email} onChange={handleChange} required/>
                         <span>{error.emailError && <p>{error.emailError}</p>}</span>
                     </div>
 
                     <div>
                         <label htmlFor="password">Password</label>
-                        <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
+                        <input type="password" id='password' name='password' placeholder='Enter Your Password' value={data.password} onChange={handleChange} required/>
                         <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
+                    </div>
+
+                    <div>
+                        <Link to='/forgotPassword' style={{fontSize:'small'}}>Forgot Password?</Link>
                     </div>
 
                     <div>

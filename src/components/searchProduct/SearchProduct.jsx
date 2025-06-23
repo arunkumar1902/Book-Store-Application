@@ -10,7 +10,7 @@ export default function SearchProduct() {
     const auth = useAuth();
     const books = auth.bookDetails;
 
-    const searchTerms = searchItem.split(" ");
+    const searchTerms = searchItem.toLowerCase().split(" ");
 
     const filteredBooks = books.filter((bookData) => {
         const BookTitle = bookData.bookTitle.toLowerCase();
@@ -18,7 +18,7 @@ export default function SearchProduct() {
     });
 
     return (
-        <div style={{margin:"30px", minHeight:"60vh"}}>
+        <div style={{margin:"30px"}}>
             <p>Result based on your search : {searchItem}</p>
             <br />
             {filteredBooks.length == 0?<p>No result found</p>:<BookDetails booksDetails={filteredBooks}></BookDetails>}

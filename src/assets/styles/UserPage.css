@@ -4,7 +4,10 @@
 .userpage h2{
     padding: 30px;
 }
-.userBookList button{
+.Cart_Rent_Buttons{
+    display: flex;
+}
+.userBookDetails button{
     cursor: pointer;
     padding: 8px;
     width: 40%;
@@ -60,4 +63,9 @@
     border: 1px solid black;
     border-collapse:collapse;
     padding: 10px;
+}
+@media (max-width:700px){
+    .userBookList{
+        grid-template-columns: auto;
+    }
 }

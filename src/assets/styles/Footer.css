@@ -8,6 +8,7 @@
     text-align: center;
 }
 .about{
+    text-align: justify;
     width: 50%;
     border: 1px solid gray;
     background-color: rgb(213, 213, 132);
@@ -17,8 +18,19 @@
 .copyright{
     min-width: 80%;
 }
+.footer h4{
+    text-align: center;
+}
 .contact{
     display: flex;
     justify-content: space-between;
     padding: 10px;
+}
+@media (max-width: 800px){
+    .about{
+        width: 80%;
+    }
+    .contact{
+        flex-direction: column-reverse;
+    }
 }

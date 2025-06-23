@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/styles/Header.css'
-import { ADMINEMAIL } from '../../config/env';
+import { ADMINEMAIL } from '../../../public/config/env';
 
 export default function Header() {
     const auth = useAuth();
@@ -28,38 +28,43 @@ export default function Header() {
                 {data && <div className='navigation' >
 
                     <div className='details'>
-                        <div>
-                            {data.email === ADMINEMAIL ?
-                                <Link to='/adminPage'>Home</Link>
-                                : <Link to='/bookRental'>Home</Link>
-                            }
-                        </div>
+                        {data.email === ADMINEMAIL ?
+                            <Link to="/adminPage">Home</Link>
+                            :
+                            <Link to="/bookRental">Home</Link>
+                        }
                         <a href='#about'>About</a>
                         <a href='#contact'>Contact</a>
                     </div>
 
-                    <div className='search'>
-                        <input
-                            type='search'
-                            value={searchItem}
-                            placeholder='Search Book with Title'
-                            onChange={(event) => setSearchItem(event.target.value)}
-                        ></input>
-                        <button onClick={handleSearch}>Search</button>
-                    </div>
+                    <div className='headerContainer'>
+                        <div className='search'>
+                            <input
+                                type='search'
+                                value={searchItem}
+                                placeholder='Search Book with Title'
+                                onChange={(event) => setSearchItem(event.target.value)}
+                            ></input>
+                            <button onClick={handleSearch}>Search</button>
+                        </div>
 
-                    {data.email === ADMINEMAIL ?
-                        <div className='profile'>
-                            <span>Admin Login</span>
-                            <button onClick={() => (auth.logout())}>Logout</button>
-                        </div>
-                        :
-                        <div className='profile'>
-                            <Link to='/userCart'><i className='fa fa-shopping-cart'></i></Link>
-                            <Link to='/userProfile'>Profile</Link>
-                            <button onClick={() => (auth.logout())}>Logout</button>
-                        </div>
-                    }
+                        {data.email === ADMINEMAIL ?
+                            <div className='profile'>
+                                <span>AdminPage</span>
+                                <button onClick={() => (auth.logout())}>Logout</button>
+                            </div>
+                            :
+                            <div className='profile'>
+                                <Link to='/userCart'>
+                                    <i className='fa fa-shopping-cart'>
+                                        <span style={{ color: 'red' }}>({data.cartDetails.length})</span>
+                                    </i>
+                                </Link>
+                                <Link to='/userProfile'>Profile</Link>
+                                <button onClick={() => (auth.logout())}>Logout</button>
+                            </div>
+                        }
+                    </div>
 
                 </div>}
             </header>

@@ -40,3 +40,19 @@
     padding-top: 20px;
     cursor: pointer;
 }
+.star{
+    color: red;
+}
+.genderDiv{
+    display: flex;
+    justify-content: center;
+}
+.genderDiv fieldset{
+    width: 57%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.formdiv input{
+    padding: 5px;
+}

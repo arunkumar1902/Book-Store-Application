@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthProvider';
-import { PASSWORDPATTERN, USERDETAILSAPI } from '../../../config/env';
+import { PASSWORDPATTERN, USERDETAILSAPI } from '../../../../public/config/env';
+import NewPassword from '../../newPassword/NewPassword';
 
-export default function ProfileEdit({ userData }) {
+export default function ProfileEdit({ userData}) {
     const auth = useAuth();
-
     const [changePassword, setChangePassword] = useState(true);
     const [editingNewPassword, setEditingNewPassword] = useState(false);
 
@@ -52,7 +53,6 @@ export default function ProfileEdit({ userData }) {
     const validation = () => {
         let isValid = true;
 
-        //password validation
         if (!PASSWORDPATTERN.test(updatedPassword.password)) {
             setError((prev) => ({
                 ...prev,
@@ -114,27 +114,31 @@ export default function ProfileEdit({ userData }) {
 
             {editingNewPassword ?
 
-                <div>
+                <div className='PasswordDiv'>
 
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className='passwordContainer'>
+                        <h3>New Password</h3>
+                        <hr /><br />
 
                         <div>
                             <label htmlFor="editingNewPassword">New Password : </label>
                             <input type="password" id='editingNewPassword' name='password' value={updatedPassword.password} onChange={handleUpdatedPassword} required />
                             {error.passwordError && <p>{error.passwordError}</p>}
-                        </div>
+                        </div><br />
 
                         <div>
                             <label htmlFor="confirmPassword">Confirm Password : </label>
                             <input type="password" id='confirmPassword' name='confirmPassword' value={updatedPassword.confirmPassword} onChange={handleUpdatedPassword} required />
                             {error.confirmPasswordError && <p>{error.confirmPasswordError}</p>}
+                        </div><br />
+
+                        <div className='buttonContainer'>
+                            <button type='submit'>Submit</button>
+                            <button onClick={handleCancel}>Cancel</button>
                         </div>
 
-                        <button type='submit'>Submit</button>
-
                     </form>
-                    
-                    <button onClick={handleCancel}>Cancel</button>
+
                 </div>
 
                 :<div>
@@ -143,25 +147,27 @@ export default function ProfileEdit({ userData }) {
 
                         <button onClick={() => setChangePassword(false)}>Change Password</button>
 
-                        :<div>
-                            <form onSubmit={handleCurrentPasswordSubmit}>
-
+                        : <div className='PasswordDiv'>
+                            <form onSubmit={handleCurrentPasswordSubmit} className='passwordContainer'>
+                                <h3>Current Password</h3> <hr /><br />
                                 <div>
-                                    <label htmlFor="currentPassword">Current Password : </label>
-                                    <input 
-                                        type="password" 
-                                        id='currentPassword' 
-                                        value={currentPassword} 
-                                        onChange={(event) => setCurrentPassword(event.target.value)} 
-                                        required 
+                                    <label htmlFor="currentPassword">Password : </label>
+                                    <input
+                                        type="password"
+                                        id='currentPassword'
+                                        value={currentPassword}
+                                        onChange={(event) => setCurrentPassword(event.target.value)}
+                                        required
                                     />
+                                </div><br />
+                                <Link to='/forgotPassword'>Forgot Password?</Link><br />
+
+                                <div className='buttonContainer'>
+                                    <button type='submit'>Submit</button>
+                                    <button onClick={handleCancel}>Cancel</button>
                                 </div>
-
-                                <button type='submit'>Submit</button>
-
                             </form>
 
-                            <button onClick={handleCancel}>Cancel</button>
 
                         </div>
                     }

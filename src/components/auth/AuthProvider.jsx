@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ADMINEMAIL, ADMINPASSWORD, BOOKDETAILSAPI, USERDETAILSAPI } from '../../config/env';
+import { ADMINEMAIL, ADMINPASSWORD, BOOKDETAILSAPI, USERDETAILSAPI } from '../../../public/config/env';
 
 const AuthContext = createContext();
 export default function AuthProvider({ children }) {
@@ -42,9 +42,10 @@ export default function AuthProvider({ children }) {
             await fetchUserData(data.id);
             localStorage.setItem("site", JSON.stringify(data));
             if (data.email === ADMINEMAIL && data.password === ADMINPASSWORD) {
+                alert("You are now logged in as Admin");
                 navigate('/adminPage');
             } else {
-                navigate('/bookRental', { state: { userId: data.id } });
+                navigate('/bookRental');
             } 
         } catch (error) {
             console.log("Error Logging in : ", error);
