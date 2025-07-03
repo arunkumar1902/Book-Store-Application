@@ -15,7 +15,6 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: red;
 }
 .userDetails table, .userDetails tr, .userDetails td, .userDetails th{
     border: 1px solid black;

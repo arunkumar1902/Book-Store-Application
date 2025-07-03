@@ -17,7 +17,6 @@ export default function BookDetails({ booksDetails }) {
 
       if (checkAlreadyRentedBook) {
         alert("Book Already Rented");
-        setIsAlreadyInCart(true);
       }
       else {
         const newBookData = {

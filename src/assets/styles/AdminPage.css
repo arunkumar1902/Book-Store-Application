@@ -40,7 +40,7 @@
     .booksList{
         padding-top: 50px;
     }
-    .booksList h4, p{
+    .booksList h4, .booksList p{
         font-size: smaller;
     }
 }

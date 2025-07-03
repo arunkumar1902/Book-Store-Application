@@ -20,6 +20,10 @@ export default function Header() {
         }
     }
 
+    const handleProfile = (data)=>{
+        navigate('/userProfile', { state: { profileData: data } });
+    }
+
     return (
         <div>
             <header className='header'>
@@ -60,8 +64,15 @@ export default function Header() {
                                         <span style={{ color: 'red' }}>({data.cartDetails.length})</span>
                                     </i>
                                 </Link>
-                                <Link to='/userProfile'>Profile</Link>
-                                <button onClick={() => (auth.logout())}>Logout</button>
+                                <div className='profileContainer'>
+                                    <i className='fa fa-user' style={{cursor:'pointer'}}></i>
+                                    <div className='profileDropdown'>
+                                        <button onClick={()=>handleProfile("profile")}>Profile</button><br /><br />
+                                        <button onClick={()=>handleProfile("rentedBooks")}>Rented Books</button><br /><br />
+                                        <button onClick={()=>handleProfile("returnedBooks")}>Returned Books</button><br /><br />
+                                        <button onClick={() => (auth.logout())}>Logout</button>
+                                    </div>
+                                </div>
                             </div>
                         }
                     </div>

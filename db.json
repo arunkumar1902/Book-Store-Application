@@ -15,15 +15,11 @@
     {
       "username": "Arun",
       "email": "kumar1902002@gmail.com",
-      "address": "abc",
+      "address": "Chennai ",
       "password": "123@Qaz",
       "confirmpassword": "123@Qaz",
       "termsConditions": true,
-      "cartDetails": [
-        {
-          "bookId": 3
-        }
-      ],
+      "cartDetails": [],
       "booksRented": [
         {
           "bookId": 4,
@@ -52,6 +48,13 @@
           "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
           "rentedDate": "6/23/2025",
           "rentedTime": "3:25:49 PM"
+        },
+        {
+          "bookId": 3,
+          "bookAuthor": " David M. Burton",
+          "bookTitle": "Elementary Number Theory | 7th Edition",
+          "rentedDate": "7/1/2025",
+          "rentedTime": "10:46:19 AM"
         }
       ],
       "returnedBooks": [
@@ -140,7 +143,7 @@
       "bookTitle": "Elementary Number Theory | 7th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
       "bookAuthor": " David M. Burton",
-      "bookStock": 6,
+      "bookStock": 5,
       "id": 3
     },
     {

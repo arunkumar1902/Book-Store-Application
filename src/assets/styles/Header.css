@@ -22,7 +22,8 @@
 .headerContainer{
     width:60%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-right:  20px
 }
 .search input{
     border: 1px solid black;
@@ -33,7 +34,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 30%;
+    width: 20%;
+}
+.fa-user{
+    border: 1px solid black;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+.fa-user:hover{
+    color: white;
+    background-color: black;
 }
 .navigation button{
     border: 1px solid black;
@@ -60,7 +72,26 @@
 .details a:hover{
     text-decoration: underline;
 }
-
+.profileContainer{
+    position: relative;
+    display: inline-block;
+}
+.profileDropdown{
+    display: none;
+    position:absolute;
+    right: 0;
+    background-color: rgb(218, 218, 129);
+    width: 120px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+.profileDropdown button{
+    width: 120px;
+}
+.profileContainer:hover .profileDropdown{
+    display: block;
+}
 @media (max-width : 800px){
     .header{
         display: flex;
@@ -71,20 +102,20 @@
         justify-content: space-around;
     }
     .headerContainer{
-        width: 70%;
+        width: 60%;
     }
     .search{
         padding: 5px;
     }
     .search input{
-        width: 50%;
+        width: 70%;
         padding: 2px;
     }
     .search button{
         padding: 2px;
     }
     .profile{
-        width: 80%;
+        width:30%;
         display: flex;
         justify-content: space-around;
     }

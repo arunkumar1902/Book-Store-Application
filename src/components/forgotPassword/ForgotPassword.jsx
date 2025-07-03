@@ -78,7 +78,7 @@ export default function ForgotPassword() {
     return (
         <div className='maindiv'>
             {passwordContainer ?
-                <NewPassword userID = {userId}></NewPassword>
+                <NewPassword userID = {userId} handleCancel = {handleCancel}></NewPassword>
                 :
                 <div className='formdiv'>
                     <h2>Forgot Password</h2><hr />

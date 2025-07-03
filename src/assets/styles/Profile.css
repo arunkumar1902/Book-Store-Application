@@ -42,9 +42,8 @@
     display: block;
     font-style: italic ;
 }
-.buttonContainer{
-    display: flex;
-    justify-content: space-around;
+.buttonContainer button{
+    margin-right: 10px;
 }
 button{
     cursor: pointer;

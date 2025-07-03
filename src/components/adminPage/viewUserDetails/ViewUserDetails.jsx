@@ -12,18 +12,23 @@ export default function ViewUserDetails() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(`${USERDETAILSAPI}/${userId}`);
-            setUserData(response.data);
+            try {
+                const response = await axios.get(`${USERDETAILSAPI}/${userId}`);
+                setUserData(response.data);
+            } catch (error) {
+                alert("Error Occured : ", error);
+                setUserData(null);
+            }
         }
         fetchData();
-    }, [])
+    }, [userId])
 
     return (
-        <div className="viewUserDetailsDiv"> 
-        <div>
-            <Link to="/adminPageUserDetails">Back</Link>
-        </div>
-        <h3>User Details</h3>
+        <div className="viewUserDetailsDiv">
+            <div>
+                <Link to="/adminPageUserDetails">Back</Link>
+            </div>
+            <h3>User Details</h3>
             <table>
                 <tbody>
                     <tr>
@@ -42,62 +47,75 @@ export default function ViewUserDetails() {
             </table><br />
 
             <h4>Currently Rented Books :</h4><br />
-            <div className="rentedBooksContainer">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Book ID</th>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Rented Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userData.booksRented &&
-                            userData.booksRented.map((item, index) => (
-                                <tr key={item.bookId}>
-                                    <td>{index + 1}.</td>
-                                    <td>{item.bookId}</td>
-                                    <td>{item.bookTitle}</td>
-                                    <td>{item.bookAuthor}</td>
-                                    <td>{item.rentedDate} <br /> {item.rentedTime}</td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div><br />
+            {
+                userData.booksRented &&
+                    userData.booksRented.length === 0 ? <p>No Books Rented</p> :
+                    <div>
+
+                        <div className="rentedBooksContainer">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Book ID</th>
+                                        <th>Book Name</th>
+                                        <th>Author</th>
+                                        <th>Rented Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {userData.booksRented &&
+                                        userData.booksRented.map((item, index) => (
+                                            <tr key={item.bookId}>
+                                                <td>{index + 1}.</td>
+                                                <td>{item.bookId}</td>
+                                                <td>{item.bookTitle}</td>
+                                                <td>{item.bookAuthor}</td>
+                                                <td>{item.rentedDate} <br /> {item.rentedTime}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+            }
+            <br />
 
             <h4>Returned Books : </h4><br />
-            <div className="rentedBooksContainer">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Book ID</th>
-                            <th>Book Name</th>
-                            <th>Author</th>
-                            <th>Rented Date</th>
-                            <th>Returned Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userData.returnedBooks &&
-                            userData.returnedBooks.map((item, index) => (
-                                <tr key={item.bookId}>
-                                    <td>{index + 1}.</td>
-                                    <td>{item.bookId}</td>
-                                    <td>{item.bookTitle}</td>
-                                    <td>{item.bookAuthor}</td>
-                                    <td>{item.rentedDate} <br />{item.rentedTime}</td>
-                                    <td>{item.returnDate} <br />{item.returnTime}</td>
+            {
+                userData.returnedBooks &&
+                    userData.returnedBooks.length === 0 ? <p>No Books Returned</p> :
+                    <div className="rentedBooksContainer">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Book ID</th>
+                                    <th>Book Name</th>
+                                    <th>Author</th>
+                                    <th>Rented Date</th>
+                                    <th>Returned Date</th>
                                 </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
+                            </thead>
+                            <tbody>
+                                {userData.returnedBooks &&
+                                    userData.returnedBooks.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}.</td>
+                                            <td>{item.bookId}</td>
+                                            <td>{item.bookTitle}</td>
+                                            <td>{item.bookAuthor}</td>
+                                            <td>{item.rentedDate} <br />{item.rentedTime}</td>
+                                            <td>{item.returnDate} <br />{item.returnTime}</td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+            }
         </div>
     )
 }

@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { PASSWORDPATTERN, USERDETAILSAPI } from '../../../public/config/env';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
+import "../../assets/styles/Forms.css"
 
-export default function NewPassword({userID}) {
+export default function NewPassword({userID, handleCancel}) {
 
     const navigate = useNavigate();
+    const auth = useAuth();
 
     const [updatedPassword, setUpdatedPassword] = useState({
         password: '',
@@ -63,15 +66,20 @@ export default function NewPassword({userID}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (validation()) {
-            await axios.patch(`${USERDETAILSAPI}/${userID}`, updatedPassword );
-            alert('Password Changed, Now  Login');
-            navigate('/loginPage');
+            try {
+                await axios.patch(`${USERDETAILSAPI}/${userID}`, updatedPassword );
+                alert('Password Changed, Now  Login');
+                auth.logout();
+                navigate('/loginPage');
+            } catch (error) {
+                alert("Error Occured : " + error.message)
+            }
         }
     }
 
     return (
         <div className='formdiv'>
-            <h3>NewPassword</h3>
+            <h3>Create New Password</h3> <br /><hr /><br />
 
             <form onSubmit={handleSubmit}>
 
@@ -104,6 +112,7 @@ export default function NewPassword({userID}) {
                 </div>
 
                 <button type='submit'>Submit</button>
+                <button type='button' onClick={handleCancel}>Cancel</button>
 
             </form>
 
