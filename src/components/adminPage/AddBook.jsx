@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import '../../assets/styles/Forms.css'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import { BOOKDETAILSAPI } from '../../../public/config/env';
 
 
 export default function AddBook() {
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
     const auth = useAuth();
+    const navigate = useNavigate();
 
     const [bookDetails, setBookDetails] = useState({
         bookTitle: '',
@@ -27,7 +28,7 @@ export default function AddBook() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post(`${bookDetailsAPI}`, bookDetails);
+            await axios.post(`${BOOKDETAILSAPI}`, bookDetails);
 
             alert("Book Added Successfully");
             setBookDetails({
@@ -43,11 +44,20 @@ export default function AddBook() {
         }
     }
 
+    const handleCancel = ()=>{
+        if(confirm('Do You want to Cancel? ')){
+            setBookDetails({
+                bookTitle: '',
+                bookImage: '',
+                bookAuthor: '',
+                bookStock: ''
+            });
+            navigate('/adminPage');
+        }
+    }
+
     return (
         <>
-            <div className='back'>
-                <Link to='/adminPage'>Back</Link>
-            </div>
             <div className='maindiv'>
                 <div className="formdiv">
                     <h2>Add New Book</h2>
@@ -58,6 +68,7 @@ export default function AddBook() {
                                 type="text"
                                 id='bookTitle'
                                 name='bookTitle'
+                                placeholder='Enter Book Title'
                                 value={bookDetails.bookTitle}
                                 onChange={handleChanges}
                                 required
@@ -70,6 +81,7 @@ export default function AddBook() {
                                 type='url'
                                 id='bookImage'
                                 name='bookImage'
+                                placeholder='Enter Book Image'
                                 value={bookDetails.bookImage}
                                 onChange={handleChanges}
                                 required
@@ -82,6 +94,7 @@ export default function AddBook() {
                                 type="text"
                                 id='bookAuthor'
                                 name='bookAuthor'
+                                placeholder='Enter Book Author'
                                 value={bookDetails.bookAuthor}
                                 onChange={handleChanges}
                                 required
@@ -95,6 +108,7 @@ export default function AddBook() {
                                 min='0'
                                 id='bookStock'
                                 name='bookStock'
+                                placeholder='Enter Book Stock'
                                 value={bookDetails.bookStock}
                                 onChange={handleChanges}
                                 required
@@ -103,6 +117,7 @@ export default function AddBook() {
 
                         <div>
                             <button type='submit'>Submit</button>
+                            <button onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
 

@@ -3,79 +3,125 @@
     {
       "username": "Admin",
       "email": "admin@gmail.com",
+      "address": "adminOffice",
       "password": "Admin@123",
       "confirmpassword": "Admin@123",
+      "termsConditions": true,
+      "cartDetails": [],
+      "booksRented": [],
+      "returnedBooks": [],
       "id": 1
     },
     {
       "username": "Arun",
       "email": "kumar1902002@gmail.com",
-      "password": "123@Qwe",
-      "confirmpassword": "123@Qwe",
-      "cartDetails": [
+      "address": "Chennai ",
+      "password": "123@Qaz",
+      "confirmpassword": "123@Qaz",
+      "termsConditions": true,
+      "cartDetails": [],
+      "booksRented": [
         {
-          "bookId": 2
+          "bookId": 4,
+          "bookAuthor": "ERIC, MATTHES",
+          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "3:01:06 PM"
         },
         {
-          "bookId": 3
-        }
-      ],
-      "booksRented": [
+          "bookId": 6,
+          "bookAuthor": "Walter Rudin ",
+          "bookTitle": "Real and Complex Analysis | 3rd Edition ",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "3:08:51 PM"
+        },
         {
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "5/7/2025",
-          "rentedTime": "3:50:09 PM"
+          "rentedDate": "6/23/2025",
+          "rentedTime": "2:57:22 PM"
+        },
+        {
+          "bookId": 2,
+          "bookAuthor": "Yashavant Kanetkar ",
+          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+          "rentedDate": "6/23/2025",
+          "rentedTime": "3:25:49 PM"
         },
         {
           "bookId": 3,
           "bookAuthor": " David M. Burton",
           "bookTitle": "Elementary Number Theory | 7th Edition",
-          "rentedDate": "5/14/2025",
-          "rentedTime": "3:54:28 PM"
-        },
-        {
-          "bookId": 5,
-          "bookAuthor": "Behrouz A. Forouzan ",
-          "bookTitle": "Computer Networks: A Top-Down Approach",
-          "rentedDate": "5/14/2025",
-          "rentedTime": "3:55:37 PM"
+          "rentedDate": "7/1/2025",
+          "rentedTime": "10:46:19 AM"
         }
       ],
       "returnedBooks": [
         {
-          "id": 1747050903553,
+          "id": 1749810172347,
+          "bookId": 2,
+          "bookAuthor": "Yashavant Kanetkar ",
+          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+          "rentedDate": "6/13/2025",
+          "rentedTime": "3:52:41 PM",
+          "returnDate": "6/13/2025",
+          "returnTime": "3:52:52 PM"
+        },
+        {
+          "id": 1750152833735,
+          "bookId": 2,
+          "bookAuthor": "Yashavant Kanetkar ",
+          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "11:00:01 AM",
+          "returnDate": "6/17/2025",
+          "returnTime": "3:03:53 PM"
+        },
+        {
+          "id": 1750152837598,
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "5/7/2025",
-          "rentedTime": "3:50:09 PM",
-          "returnDate": "5/12/2025",
-          "returnTime": "5:25:03 PM"
+          "rentedDate": "6/17/2025",
+          "rentedTime": "11:52:26 AM",
+          "returnDate": "6/17/2025",
+          "returnTime": "3:03:57 PM"
         },
         {
-          "id": 1747050947003,
-          "bookId": 1,
-          "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "5/12/2025",
-          "rentedTime": "5:25:35 PM",
-          "returnDate": "5/12/2025",
-          "returnTime": "5:25:47 PM"
-        },
-        {
-          "id": 1747213841960,
-          "bookId": 5,
-          "bookAuthor": "Behrouz A. Forouzan ",
-          "bookTitle": "Computer Networks: A Top-Down Approach",
-          "rentedDate": "5/14/2025",
-          "rentedTime": "2:36:26 PM",
-          "returnDate": "5/14/2025",
-          "returnTime": "2:40:41 PM"
+          "bookId": 3,
+          "bookAuthor": " David M. Burton",
+          "bookTitle": "Elementary Number Theory | 7th Edition",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "3:01:03 PM",
+          "returnDate": "6/23/2025",
+          "returnTime": "2:56:39 PM"
         }
       ],
-      "id": 2
+      "id": 2,
+      "confirmPassword": "123@Asd"
+    },
+    {
+      "username": "arun",
+      "email": "arun1902002@gmail.com",
+      "address": "abc",
+      "password": "123@Qaz",
+      "confirmpassword": "123@Qaz",
+      "termsConditions": true,
+      "booksRented": [],
+      "returnedBooks": [],
+      "id": 3
+    },
+    {
+      "username": "arun",
+      "email": "ak1902002@gmail.com",
+      "address": "abc",
+      "password": "123@Qaz",
+      "confirmpassword": "123@Qaz",
+      "termsConditions": true,
+      "booksRented": [],
+      "returnedBooks": [],
+      "id": 4
     }
   ],
   "BooksDetails": [
@@ -83,28 +129,28 @@
       "bookTitle": "Programming with Java | 7th Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
       "bookAuthor": " E. Balagurusamy",
-      "bookStock": 4,
+      "bookStock": 5,
       "id": 1
     },
     {
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
-      "bookStock": 4,
+      "bookStock": 3,
       "id": 2
     },
     {
       "bookTitle": "Elementary Number Theory | 7th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
       "bookAuthor": " David M. Burton",
-      "bookStock": 7,
+      "bookStock": 5,
       "id": 3
     },
     {
       "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9781718502086.jpg",
       "bookAuthor": "ERIC, MATTHES",
-      "bookStock": 3,
+      "bookStock": 2,
       "id": 4
     },
     {
@@ -118,7 +164,7 @@
       "bookTitle": "Real and Complex Analysis | 3rd Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/119/9789355326119.jpg",
       "bookAuthor": "Walter Rudin ",
-      "bookStock": 1,
+      "bookStock": 0,
       "id": 6
     }
   ]

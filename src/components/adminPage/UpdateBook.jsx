@@ -1,11 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { BOOKDETAILSAPI } from '../../../public/config/env';
 
 export default function UpdateBook() {
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
-    const auth = useAuth();
 
     const [bookDetails, setBookDetails] = useState({
         bookTitle:'',
@@ -20,7 +18,7 @@ export default function UpdateBook() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`${bookDetailsAPI}/${book}`);
+            const response = await axios.get(`${BOOKDETAILSAPI}/${book}`);
             setBookDetails(response.data);
         } catch (error) {
             console.log("Error Fetching Data : " + error);
@@ -43,20 +41,29 @@ export default function UpdateBook() {
     const handleSubmit = async(event)=>{
         event.preventDefault();
         try {
-            await axios.patch(`${bookDetailsAPI}/${book}`, bookDetails);
+            await axios.patch(`${BOOKDETAILSAPI}/${book}`, bookDetails);
             alert("Book updated Successfully");
-            await auth.fetchBookData();
             navigate('/adminPage');
+            await auth.fetchBookData();
         } catch (error) {
             console.log("Error in Submitting : " + error);
+        }
+    }
+    
+    const handleCancel =()=>{
+        if(confirm('Do You want to Cancel? ')){
+            setBookDetails({
+                bookTitle:'',
+                bookImage:'',
+                bookAuthor:'',
+                bookStock:''
+            });
+            navigate('/adminPage');
         }
     }
 
     return (
         <>
-            <div className='back'>
-                <Link to='/adminPage'>Back</Link>
-            </div>
             <div className='maindiv'>
                 <div className="formdiv">
                     <h2>Update Book</h2>
@@ -112,6 +119,7 @@ export default function UpdateBook() {
 
                         <div>
                             <button type='submit'>Submit</button>
+                            <button onClick={handleCancel}>Cancel</button>
                         </div>
                     </form>
 

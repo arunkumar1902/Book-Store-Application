@@ -1,16 +1,15 @@
 import React from 'react'
 import axios from 'axios';
 import { useAuth } from '../../auth/AuthProvider';
+import { BOOKDETAILSAPI, USERDETAILSAPI } from '../../../config/env';
 
 export default function UserRentedBooksDetails({ userData }) {
-    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
-    const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
     const auth = useAuth();
 
     const updateStock = async (bookid, bookStock) => {
         try {
-            await axios.patch(`${bookDetailsAPI}/${bookid}`, {
+            await axios.patch(`${BOOKDETAILSAPI}/${bookid}`, {
                 "bookStock": bookStock + 1
             });
             auth.fetchBookData();
@@ -41,10 +40,10 @@ export default function UserRentedBooksDetails({ userData }) {
                 ]
             }
 
-            await axios.patch(`${userDetailsAPI}/${userData.id}`, updateReturnedBooks);
+            await axios.patch(`${USERDETAILSAPI}/${userData.id}`, updateReturnedBooks);
             await auth.fetchUserData(userData.id);
 
-            const response = await axios.get(`${bookDetailsAPI}/${bookData.bookId}`);
+            const response = await axios.get(`${BOOKDETAILSAPI}/${bookData.bookId}`);
             const bookStock = response.data.bookStock;
             await updateStock(bookData.bookId, bookStock);
             alert("Book Returned Successfully");

@@ -1,110 +1,20 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { useAuth } from '../../auth/AuthProvider';
+import { useState } from 'react'
+import AddressEdit from '../addressEdit/AddressEdit';
+import ChangePassword from '../changePassword/ChangePassword';
+import NewPassword from '../../newPassword/NewPassword';
+import { createPortal } from 'react-dom';
 
 export default function ProfileEdit({ userData }) {
-    const USERDETAILSAPI = import.meta.env.VITE_USERDETAILS;
-    const auth = useAuth();
-
-    const [changePassword, setChangePassword] = useState(true);
+    const [changePassword, setChangePassword] = useState(false);
     const [editingNewPassword, setEditingNewPassword] = useState(false);
 
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [updatedPassword, setUpdatedPassword] = useState({
-        password: '',
-        confirmPassword: ''
-    });
-    const [error, setError] = useState({
-        passwordError: '',
-        confirmPasswordError: ''
-    });
+    // address field
+    const [addressEdit, setAddressEdit] = useState(false);
 
-    const handleCurrentPasswordSubmit = (event) => {
-        event.preventDefault();
-        if (userData.password === currentPassword) {
-            setEditingNewPassword(true);
-            setCurrentPassword('')
-        } else {
-            alert("Wrong Password, try again");
-        }
-    }
-
-    const handleUpdatedPassword = (event) => {
-        const { name, value } = event.target;
-        setUpdatedPassword((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    }
-
-    const handleCancel = () => {
-        if (confirm("Do you want Cancel ?")) {
+    const handleCancel = ()=>{
+        if(confirm("Do you want Cancel ? ")){
+            setChangePassword(false);
             setEditingNewPassword(false);
-            setChangePassword(true);
-            setCurrentPassword('');
-            setUpdatedPassword({
-                password: '',
-                confirmPassword: ''
-            });
-        }
-    }
-
-    const validation = () => {
-        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
-        let isValid = true;
-
-        //password validation
-        if (!passwordPattern.test(updatedPassword.password)) {
-            setError((prev) => ({
-                ...prev,
-                passwordError: "Password must contain atleast 1 Special Character, 1 number, 1 uppercase and 1 lowercase alphabet with atleast 7 characters"
-            }));
-            isValid = false;
-        }
-        else {
-            setError((prev) => ({
-                ...prev,
-                passwordError: ''
-            }));
-        }
-
-        //confirm password validation
-        if (updatedPassword.password !== updatedPassword.confirmPassword) {
-            setError((prev) => ({
-                ...prev,
-                confirmPasswordError: "Password doesn't match"
-            }));
-            isValid = false;
-        }
-        else {
-            setError((prev) => ({
-                ...prev,
-                confirmPasswordError: ''
-            }));
-        }
-        return isValid;
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (validation()) {
-            try{
-                await axios.patch(`${USERDETAILSAPI}/${userData.id}`, {
-                    password : updatedPassword.password,
-                    confirmpassword: updatedPassword.confirmPassword
-                });
-                alert('Updated Successfully');
-                setEditingNewPassword(false);
-                setChangePassword(true);
-                setUpdatedPassword({
-                    password: '',
-                    confirmPassword: ''
-                });
-                auth.fetchUserData(userData.id);
-            }
-            catch(error){
-                alert("Error occurred, try again: ", error);
-            }
         }
     }
 
@@ -113,62 +23,28 @@ export default function ProfileEdit({ userData }) {
             <p>Name : {userData.username}</p><br />
             <p>Email : {userData.email}</p><br />
 
-            {editingNewPassword ?
+            <div>
+                <span>Address : </span>
+                <span>
+                    {userData.address}
+                    <button onClick={() => setAddressEdit(true)}>Edit</button>
+                </span>
+                {addressEdit && <AddressEdit userId={userData.id} address={userData.address} setAddressEdit={setAddressEdit}></AddressEdit>}
+            </div>
+            <br /><br />
 
-                <div>
+            <button onClick={() => setChangePassword(true)}>Change Password</button>
 
-                    <form onSubmit={handleSubmit}>
+            {changePassword && <ChangePassword password={userData.password} setChangePassword={setChangePassword} setEditingNewPassword={setEditingNewPassword}></ChangePassword>}
 
-                        <div>
-                            <label htmlFor="editingNewPassword">New Password : </label>
-                            <input type="password" id='editingNewPassword' name='password' value={updatedPassword.password} onChange={handleUpdatedPassword} required />
-                            {error.passwordError && <p>{error.passwordError}</p>}
-                        </div>
-
-                        <div>
-                            <label htmlFor="confirmPassword">Confirm Password : </label>
-                            <input type="password" id='confirmPassword' name='confirmPassword' value={updatedPassword.confirmPassword} onChange={handleUpdatedPassword} required />
-                            {error.confirmPasswordError && <p>{error.confirmPasswordError}</p>}
-                        </div>
-
-                        <button type='submit'>Submit</button>
-
-                    </form>
-                    
-                    <button onClick={handleCancel}>Cancel</button>
+            {editingNewPassword && createPortal(
+                <div className="modal-backdrop">
+                    <div className="modal">
+                        <NewPassword userID={userData.id} handleCancel ={ handleCancel}></NewPassword>
+                    </div>
                 </div>
-
-                :<div>
-
-                    {changePassword ? 
-
-                        <button onClick={() => setChangePassword(false)}>Change Password</button>
-
-                        :<div>
-                            <form onSubmit={handleCurrentPasswordSubmit}>
-
-                                <div>
-                                    <label htmlFor="currentPassword">Current Password : </label>
-                                    <input 
-                                        type="password" 
-                                        id='currentPassword' 
-                                        value={currentPassword} 
-                                        onChange={(event) => setCurrentPassword(event.target.value)} 
-                                        required 
-                                    />
-                                </div>
-
-                                <button type='submit'>Submit</button>
-
-                            </form>
-
-                            <button onClick={handleCancel}>Cancel</button>
-
-                        </div>
-                    }
-
-                </div>
-            }
+                , document.getElementById("modal")
+            )}
 
         </div>
     )

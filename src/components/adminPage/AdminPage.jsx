@@ -3,10 +3,10 @@ import axios from 'axios';
 import '../../assets/styles/AdminPage.css'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import { BOOKDETAILSAPI } from '../../config/env';
 
 
 export default function AdminPage() {
-  const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
   const navigate = useNavigate();
   const auth = useAuth();
@@ -28,7 +28,7 @@ export default function AdminPage() {
   const handleDelete = async (book) => {
       if(confirm(`Do you want the Delete the book? : ${book.bookTitle}`)){
         try {
-          await axios.delete(`${bookDetailsAPI}/${book.id}`);
+          await axios.delete(`${BOOKDETAILSAPI}/${book.id}`);
           auth.fetchBookData();
           alert("Book deleted Successfully");
         } catch (error) {
@@ -40,28 +40,30 @@ export default function AdminPage() {
       }
   }
 
-  
+  const handleViewUser = () => {
+    navigate('/adminPageUserDetails');
+  }
+
   return (
     <div className='adminpage'>
 
       <div className='adminButtons'>
-        <button onClick={handleAddBook}>Add New Book</button>
+        <button onClick={handleAddBook}><i className='fa fa-plus'></i> Add New Book</button>
+        <button onClick={handleViewUser}>View User</button>
       </div>
 
       <div className='booksList'>
         <h2>List of Books</h2>
         <br />
-        
+
         <table>
 
           <thead>
             <tr>
               <th>S.No</th>
               <th>Image</th>
-              <th>Book Title</th>
-              <th>Author</th>
-              <th>Stocks Available</th>
-              <th>Update Book Details</th>
+              <th>Description</th>
+              <th>Update Book</th>
               <th>Delete Book</th>
             </tr>
           </thead>
@@ -71,17 +73,19 @@ export default function AdminPage() {
               <tr>
                 <td>{index + 1}</td>
                 <td className='bookImage'><img src={books.bookImage} alt={books.bookTitle}></img></td>
-                <td><h4>{books.bookTitle}</h4></td>
-                <td><p>{books.bookAuthor}</p></td>
-                <td><p>{books.bookStock}</p></td>
+                <td>
+                  <p><i>{books.bookTitle}</i></p><br />
+                  <p><b>Author: </b>{books.bookAuthor}</p><br />
+                  <p><b>Available Stock: </b>{books.bookStock}</p><br />
+                </td>
                 <td><button onClick={() => { handleUpdate(books.id) }}>Update</button></td>
                 <td><button onClick={() => { handleDelete(books) }}>Delete</button></td>
               </tr>
+              
             </tbody>
-
           ))}
+            </table>
 
-        </table>
       </div>
 
     </div>

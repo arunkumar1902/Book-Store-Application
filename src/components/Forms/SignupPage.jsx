@@ -2,44 +2,44 @@ import React, { useState } from 'react'
 import '../../assets/styles/Forms.css'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { EMAILPATTERN, PASSWORDPATTERN, USERDETAILSAPI, USERNAMEPATTERN } from '../../../public/config/env';
 
 
 export default function SignupPage() {
-    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
     const navigate = useNavigate();
 
     const [data, setData] = useState({
         username: '',
         email: '',
+        address:'',
         password: '',
-        confirmpassword: ''
+        confirmpassword: '',
+        termsConditions:false
     });
 
     const [error, setError] = useState({
         usernameError: '',
         emailError: '',
+        addressError:'',
         passwordError: '',
         confirmpasswordError: ''
     });
 
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value, type, checked } = event.target;
         setData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: type === 'checkbox'? checked : value
         }));
     };
 
     const validation = () => {
-        const usernamePattern = new RegExp(import.meta.env.VITE_USERNAMEPATTERN);
-        const emailPattern = new RegExp(import.meta.env.VITE_EMAILPATTERN);
-        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
         //username validation
 
-        if (!usernamePattern.test(data.username)) {
+        if (!USERNAMEPATTERN.test(data.username)) {
             setError((prevError) => ({
                 ...prevError,
                 usernameError: 'Enter name with only alphabets'
@@ -54,7 +54,7 @@ export default function SignupPage() {
 
 
         //email validation
-        if (!emailPattern.test(data.email)) {
+        if (!EMAILPATTERN.test(data.email)) {
             setError((prevError) => ({
                 ...prevError,
                 emailError: 'Enter valid Email ID'
@@ -68,7 +68,7 @@ export default function SignupPage() {
         }
 
         //password validation
-        if (data.password === "" || !passwordPattern.test(data.password)) {
+        if (data.password === "" || !PASSWORDPATTERN.test(data.password)) {
             setError((prevError) => ({
                 ...prevError,
                 passwordError: "Password must contain atleast 1 Special Character, 1 number, 1 uppercase and 1 lowercase alphabet with atleast 7 characters"
@@ -105,15 +105,15 @@ export default function SignupPage() {
         event.preventDefault();
         if (validation()) {
             try {
-                const response = await axios.get(`${userDetailsAPI}`);
+                const response = await axios.get(`${USERDETAILSAPI}`);
                 const existingUser = response.data;
                 const IsUserExist = existingUser.some((user) => (user.email === data.email));
                 if (IsUserExist) {
                     alert('User already Exist, try again');
                 }
                 else {
-                    const updatedData = { ...data, cartDetails:[], booksRented: [], returnedBooks: []  }
-                    await axios.post(`${userDetailsAPI}`, updatedData);
+                    const updatedData = { ...data, booksRented: [], returnedBooks: []  }
+                    await axios.post(`${USERDETAILSAPI}`, updatedData);
                     alert('Account Created Successfully, Login now');
                     navigate('/loginPage');
                 }
@@ -129,27 +129,39 @@ export default function SignupPage() {
                 <h2>Create Account</h2><hr />
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="username">Name</label>
-                        <input type="text" id='username' name='username' value={data.username} onChange={handleChange} />
+                        <label htmlFor="username">Name <span className='star'>*</span></label>
+                        <input type="text" id='username' name='username' placeholder='Enter Your Name' value={data.username} onChange={handleChange} required />
                         <span>{error.usernameError && <p>{error.usernameError}</p>}</span>
                     </div>
 
                     <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
+                        <label htmlFor="email">Email <span className='star'>*</span></label>
+                        <input type="email" id='email' name='email' placeholder='Enter Your Email' value={data.email} onChange={handleChange} required />
                         <span>{error.emailError && <p>{error.emailError}</p>}</span>
                     </div>
 
                     <div>
-                        <label htmlFor="password">Create a Password</label>
-                        <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
+                        <label htmlFor="address">Address <span className='star'>*</span></label>
+                        <input type="text" id='address' name='address' placeholder='Enter Your Address' value={data.address} onChange={handleChange} required/>
+                        <span>{error.addressError && <p>{error.addressError}</p>}</span>
+                    </div>
+
+                    <div>
+                        <label htmlFor="password">Create a Password <span className='star'>*</span></label>
+                        <input type="password" id='password' name='password' placeholder='Enter Your Password' value={data.password} onChange={handleChange} required />
                         <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
                     </div>
 
                     <div>
-                        <label htmlFor="confirmpassword">Re-Enter Your Password</label>
-                        <input type="password" id='confirmpassword' name='confirmpassword' value={data.confirmpassword} onChange={handleChange} />
+                        <label htmlFor="confirmpassword">Re-Enter Your Password <span className='star'>*</span></label>
+                        <input type="password" id='confirmpassword' name='confirmpassword' placeholder='Re-Enter Your Password' value={data.confirmpassword} onChange={handleChange} required />
                         <span>{error.confirmpasswordError && <p>{error.confirmpasswordError}</p>}</span>
+                    </div><br />
+
+                    <div>
+                        <label htmlFor="checkbox">
+                            <input type="checkbox"  id='checkbox' name='termsConditions' checked={data.termsConditions} onChange={handleChange} required/><span>Agree Terms and Conditions</span>
+                        </label>
                     </div>
 
                     <div>

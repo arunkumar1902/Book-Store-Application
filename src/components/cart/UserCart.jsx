@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import axios from 'axios';
 import '../../assets/styles/UserCart.css'
+import { USERDETAILSAPI } from '../../config/env';
+import { Link } from 'react-router-dom';
 
 export default function UserCart() {
   const auth = useAuth();
   const data = auth.user;
   const bookDetails = auth.bookDetails;
-
-  const USER_DETAILS = import.meta.env.VITE_USERDETAILS;
 
   const [cartItems, setCartBooks] = useState([]);
 
@@ -25,7 +25,7 @@ export default function UserCart() {
     const filteredCart = data.cartDetails.filter((cartBook => cartBook.bookId !== removeBookId));
 
     try {
-      await axios.patch(`${USER_DETAILS}/${data.id}`, {
+      await axios.patch(`${USERDETAILSAPI}/${data.id}`, {
         "cartDetails": filteredCart
       });
       auth.fetchUserData(data.id);
@@ -44,11 +44,18 @@ export default function UserCart() {
 
           ? <div className='emptyCart'>
             <img src="https://www.sajalenterprises.in/assets/images/empty-cart.png" alt="Empty Cart" />
+            <div className='emptyCartText'>
+              <p>Your Shopping Cart is currently empty. To add Books in your Shopping Cart, start by searching or browsing through our book store. When a book interests you, click on Add to Cart button.</p>
+              <br />
+              <p>Please <Link to='/bookRental'>Click</Link> here to continue.</p>
+            </div>
+            <br /><br />
           </div>
 
           : <div className='cartItems'>
             {cartItems.map(book => (
               <div key={book.id} className='individual_cartBooks'>
+                {/* <input type="checkbox" /> */}
 
                 <div className='cartImage'>
                   <img src={book.bookImage} alt={book.bookTitle} />
@@ -68,7 +75,7 @@ export default function UserCart() {
 
               </div>
             ))}
-            <button>Rent</button><br />
+            {/* <button>Rent</button><br /> */}
           </div>
         }
       </div>

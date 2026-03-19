@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { useAuth } from '../auth/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/styles/Header.css'
+import { ADMINEMAIL } from '../../../public/config/env';
 
 export default function Header() {
     const auth = useAuth();
     const data = auth.user;
     const navigate = useNavigate();
-
-    const ADMIN_EMAIL = import.meta.env.VITE_ADMINEMAIL;
 
     const [searchItem, setSearchItem] = useState("");
 
@@ -21,6 +20,10 @@ export default function Header() {
         }
     }
 
+    const handleProfile = (data)=>{
+        navigate('/userProfile', { state: { profileData: data } });
+    }
+
     return (
         <div>
             <header className='header'>
@@ -29,38 +32,50 @@ export default function Header() {
                 {data && <div className='navigation' >
 
                     <div className='details'>
-                        <div>
-                            {data.email === ADMIN_EMAIL ?
-                                <Link to='/adminPage'>Home</Link>
-                                : <Link to='/bookRental'>Home</Link>
-                            }
-                        </div>
+                        {data.email === ADMINEMAIL ?
+                            <Link to="/adminPage">Home</Link>
+                            :
+                            <Link to="/bookRental">Home</Link>
+                        }
                         <a href='#about'>About</a>
                         <a href='#contact'>Contact</a>
                     </div>
 
-                    <div className='search'>
-                        <input
-                            type='search'
-                            value={searchItem}
-                            placeholder='Search Book with Title'
-                            onChange={(event) => setSearchItem(event.target.value)}
-                        ></input>
-                        <button onClick={handleSearch}>Search</button>
-                    </div>
+                    <div className='headerContainer'>
+                        <div className='search'>
+                            <input
+                                type='search'
+                                value={searchItem}
+                                placeholder='Search Book with Title'
+                                onChange={(event) => setSearchItem(event.target.value)}
+                            ></input>
+                            <button onClick={handleSearch}>Search</button>
+                        </div>
 
-                    {data.email === ADMIN_EMAIL ?
-                        <div className='profile'>
-                            <span>Admin Login</span>
-                            <button onClick={() => (auth.logout())}>Logout</button>
-                        </div>
-                        :
-                        <div className='profile'>
-                            <Link to='/userCart'><i className='fa fa-shopping-cart'></i></Link>
-                            <Link to='/userProfile'>Profile</Link>
-                            <button onClick={() => (auth.logout())}>Logout</button>
-                        </div>
-                    }
+                        {data.email === ADMINEMAIL ?
+                            <div className='profile'>
+                                <span>AdminPage</span>
+                                <button onClick={() => (auth.logout())}>Logout</button>
+                            </div>
+                            :
+                            <div className='profile'>
+                                <Link to='/userCart'>
+                                    <i className='fa fa-shopping-cart'>
+                                        <span style={{ color: 'red' }}>({data.cartDetails.length})</span>
+                                    </i>
+                                </Link>
+                                <div className='profileContainer'>
+                                    <i className='fa fa-user' style={{cursor:'pointer'}}></i>
+                                    <div className='profileDropdown'>
+                                        <button onClick={()=>handleProfile("profile")}>Profile</button><br /><br />
+                                        <button onClick={()=>handleProfile("rentedBooks")}>Rented Books</button><br /><br />
+                                        <button onClick={()=>handleProfile("returnedBooks")}>Returned Books</button><br /><br />
+                                        <button onClick={() => (auth.logout())}>Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
 
                 </div>}
             </header>

@@ -1,15 +1,13 @@
-.adminpage{
-    display: flex;
-    min-height: 80vh;
-}
 .adminButtons{
-    width: 20%;
+    position: fixed;
+    margin-top: -30px;
+    width: 100%;
     background-color: rgb(252, 254, 234);
-    display: flex;
-    flex-direction: column;
+    text-align: center;
     box-shadow: 1px 1px rgb(201, 193, 106);
 }
 .adminpage button{
+    width: fit-content;
     cursor: pointer;
     padding: 10px;
     background-color: beige;
@@ -23,6 +21,7 @@
     color: white;
 }
 .booksList{
+    padding-top: 40px;
     margin: 30px;
     text-align: center;
 }
@@ -35,5 +34,13 @@
     width: 10%;
 }
 .bookImage img{
-    width: 100%;
+    width: 50%;
+}
+@media (max-width : 800px){
+    .booksList{
+        padding-top: 50px;
+    }
+    .booksList h4, .booksList p{
+        font-size: smaller;
+    }
 }

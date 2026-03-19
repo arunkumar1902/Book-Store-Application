@@ -1,13 +1,10 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { ADMINEMAIL, ADMINPASSWORD, BOOKDETAILSAPI, USERDETAILSAPI } from '../../../public/config/env';
 
 const AuthContext = createContext();
 export default function AuthProvider({ children }) {
-    const adminEmail = import.meta.env.VITE_ADMINEMAIL;
-    const adminPassword = import.meta.env.VITE_ADMINPASSWORD;
-    const booksDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
-    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
 
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -22,7 +19,7 @@ export default function AuthProvider({ children }) {
   
     const fetchBookData = async () => {
         try {
-            const response = await axios.get(`${booksDetailsAPI}`);
+            const response = await axios.get(`${BOOKDETAILSAPI}`);
             setBookDetails(response.data);
         } catch (error) {
             console.log("Error in fetching books details, Try again later : ", error);
@@ -31,7 +28,7 @@ export default function AuthProvider({ children }) {
     
     const fetchUserData = async (userId) => {
         try {
-            const response = await axios.get(`${userDetailsAPI}/${userId}`);
+            const response = await axios.get(`${USERDETAILSAPI}/${userId}`);
             setUser(response.data);
             return response.data;
         }
@@ -44,10 +41,11 @@ export default function AuthProvider({ children }) {
         try {
             await fetchUserData(data.id);
             localStorage.setItem("site", JSON.stringify(data));
-            if (data.email === adminEmail && data.password === adminPassword) {
+            if (data.email === ADMINEMAIL && data.password === ADMINPASSWORD) {
+                alert("You are now logged in as Admin");
                 navigate('/adminPage');
             } else {
-                navigate('/bookRental', { state: { userId: data.id } });
+                navigate('/bookRental');
             } 
         } catch (error) {
             console.log("Error Logging in : ", error);
