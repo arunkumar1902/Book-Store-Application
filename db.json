@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "username": "Arun",
+      "email": "kumar002@gmail.com",
+      "password": "123@qwE",
+      "confirmpassword": "123@qwE",
+      "id": 1
+    },
+    {
+      "username": "Arun",
+      "email": "kumr002@gmail.com",
+      "password": "123@qwE",
+      "confirmpassword": "123@qwE",
+      "id": 2
+    }
+  ]
+}
