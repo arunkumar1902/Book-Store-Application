@@ -2,17 +2,54 @@
   "user": [
     {
       "username": "Arun",
-      "email": "kumar002@gmail.com",
-      "password": "123@qwE",
-      "confirmpassword": "123@qwE",
+      "email": "kumar1902002@gmail.com",
+      "password": "123@Qwe",
+      "confirmpassword": "123@Qwe",
       "id": 1
     },
     {
       "username": "Arun",
-      "email": "kumr002@gmail.com",
-      "password": "123@qwE",
-      "confirmpassword": "123@qwE",
+      "email": "arun123@gmail.com",
+      "password": "@qwe123Q",
+      "confirmpassword": "@qwe123Q",
       "id": 2
+    },
+    {
+      "username": "Arun",
+      "email": "arunkumar@gmail.com",
+      "password": "@Arun002",
+      "confirmpassword": "@Arun002",
+      "id": 3
+    }
+  ],
+  "BooksDetails": [
+    {
+      "bookTitle": "Programming with Java | 7th Edition ",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
+      "bookAuthor": " E. Balagurusamy",
+      "bookStock": "4",
+      "id": 1
+    },
+    {
+      "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
+      "bookAuthor": "Yashavant Kanetkar ",
+      "bookStock": "4",
+      "id": 2
+    },
+    {
+      "bookTitle": "Elementary Number Theory | 7th Edition",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
+      "bookAuthor": " David M. Burton",
+      "bookStock": "3",
+      "id": 3
+    },
+    {
+      "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9781718502086.jpg",
+      "bookAuthor": "ERIC, MATTHES ",
+      "bookStock": "2",
+      "id": 4
     }
   ]
 }
