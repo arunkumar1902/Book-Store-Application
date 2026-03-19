@@ -25,13 +25,18 @@ export default function AdminPage() {
     navigate('/updateBook', { state: { book: bookId } });
   }
 
-  const handleDelete = async (bookId) => {
-      try {
-        await axios.delete(`${bookDetailsAPI}/${bookId}`);
-        auth.fetchBookData();
-        alert("Book deleted Successfully");
-      } catch (error) {
-        console.log("Error in Deleting Book : " + error);
+  const handleDelete = async (book) => {
+      if(confirm(`Do you want the Delete the book? : ${book.bookTitle}`)){
+        try {
+          await axios.delete(`${bookDetailsAPI}/${book.id}`);
+          auth.fetchBookData();
+          alert("Book deleted Successfully");
+        } catch (error) {
+          console.log("Error in Deleting Book : " + error);
+        }
+      }
+      else{
+        console.log("delete operation cancelled");
       }
   }
 
@@ -61,7 +66,7 @@ export default function AdminPage() {
               <p>Stock : {books.bookStock}</p>
               <div>
                 <button onClick={() => { handleUpdate(books.id) }}>Update Book</button>
-                <button onClick={() => { handleDelete(books.id) }}>Delete Book</button>
+                <button onClick={() => { handleDelete(books) }}>Delete Book</button>
               </div>
             </div>
           </div>
