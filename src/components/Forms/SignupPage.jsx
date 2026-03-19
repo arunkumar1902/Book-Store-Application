@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 export default function SignupPage() {
+    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -31,9 +32,9 @@ export default function SignupPage() {
     };
 
     const validation = () => {
-        const usernamePattern = /^[a-zA-Z]{2,20}$/;
-        const emailPattern = /^[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,25}$/;
-        const passwordPattern = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,20}$/;
+        const usernamePattern = new RegExp(import.meta.env.VITE_USERNAMEPATTERN);
+        const emailPattern = new RegExp(import.meta.env.VITE_EMAILPATTERN);
+        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
         //username validation
@@ -87,7 +88,7 @@ export default function SignupPage() {
                 ...prevError,
                 confirmpasswordError: "Password does not match"
             }));
-            isValid = false
+            isValid = false;
         } else {
             setError((prevError) => ({
                 ...prevError,
@@ -104,7 +105,7 @@ export default function SignupPage() {
         event.preventDefault();
         if (validation()) {
             try {
-                const response = await axios.get("http://localhost:3000/user");
+                const response = await axios.get(`${userDetailsAPI}`);
                 const existingUser = response.data;
                 const IsUserExist = existingUser.some((user) => (user.email === data.email));
                 if (IsUserExist) {
@@ -112,7 +113,7 @@ export default function SignupPage() {
                 }
                 else {
                     const updatedData = { ...data, booksRented: [] }
-                    await axios.post("http://localhost:3000/user", updatedData);
+                    await axios.post(`${userDetailsAPI}`, updatedData);
                     alert('Account Created Successfully, Login now');
                     navigate('/loginPage');
                 }
@@ -122,46 +123,46 @@ export default function SignupPage() {
         }
     }
     return (
-        <>
-            <div className='maindiv'>
-                <div className='formdiv'>
-                    <h2>Create Account</h2><hr />
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="username">Name</label>
-                            <input type="text" id='username' name='username' value={data.username} onChange={handleChange} />
-                            <span>{error.usernameError && <p>{error.usernameError}</p>}</span>
-                        </div>
 
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
-                            <span>{error.emailError && <p>{error.emailError}</p>}</span>
-                        </div>
+        <div className='maindiv'>
+            <div className='formdiv'>
+                <h2>Create Account</h2><hr />
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="username">Name</label>
+                        <input type="text" id='username' name='username' value={data.username} onChange={handleChange} />
+                        <span>{error.usernameError && <p>{error.usernameError}</p>}</span>
+                    </div>
 
-                        <div>
-                            <label htmlFor="password">Create a Password</label>
-                            <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
-                            <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
-                        </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
+                        <span>{error.emailError && <p>{error.emailError}</p>}</span>
+                    </div>
 
-                        <div>
-                            <label htmlFor="confirmpassword">Re-Enter Your Password</label>
-                            <input type="password" id='confirmpassword' name='confirmpassword' value={data.confirmpassword} onChange={handleChange} />
-                            <span>{error.confirmpasswordError && <p>{error.confirmpasswordError}</p>}</span>
-                        </div>
+                    <div>
+                        <label htmlFor="password">Create a Password</label>
+                        <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
+                        <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
+                    </div>
 
-                        <div>
-                            <button type='submit'>Submit</button>
-                        </div>
+                    <div>
+                        <label htmlFor="confirmpassword">Re-Enter Your Password</label>
+                        <input type="password" id='confirmpassword' name='confirmpassword' value={data.confirmpassword} onChange={handleChange} />
+                        <span>{error.confirmpasswordError && <p>{error.confirmpasswordError}</p>}</span>
+                    </div>
 
-                        <div>
-                            Already have an account? <Link to='/loginPage'>Login</Link>
-                        </div>
+                    <div>
+                        <button type='submit'>Submit</button>
+                    </div>
 
-                    </form>
-                </div>
+                    <div>
+                        Already have an account? <Link to='/loginPage'>Login</Link>
+                    </div>
+
+                </form>
             </div>
-        </>
+        </div>
+
     )
 }

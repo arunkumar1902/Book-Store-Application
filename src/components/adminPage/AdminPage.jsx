@@ -6,14 +6,16 @@ import { useAuth } from '../auth/AuthProvider';
 
 
 export default function AdminPage() {
+  const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
+
   const [booksData, setBooksData] = useState([]);
   const navigate = useNavigate();
   const auth = useAuth();
-  const [search, setSearch]= useState('');
+  // const [search, setSearch]= useState('');
 
   const fetchBookDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/BooksDetails');
+      const response = await axios.get(`${bookDetailsAPI}`);
       setBooksData(response.data);
     } catch (error) {
       alert("Error Fetching Books Details : " + error);
@@ -21,12 +23,7 @@ export default function AdminPage() {
   }
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('site'));
-    if (data) {
-      fetchBookDetails();
-    } else {
-      navigate('/loginPage');
-    }
+    fetchBookDetails();
   }, []);
 
   const handleAddBook = () => {
@@ -40,7 +37,7 @@ export default function AdminPage() {
 
   const handleDelete = async (bookId) => {
       try {
-        await axios.delete(`http://localhost:3000/BooksDetails/${bookId}`);
+        await axios.delete(`${bookDetailsAPI}/${bookId}`);
         fetchBookDetails();
         alert("Book deleted Successfully");
       } catch (error) {
@@ -48,12 +45,7 @@ export default function AdminPage() {
       }
   }
 
-  const handleSearch = (event)=>{
-    setSearch(event.target.value);
-    
-    // booksData.map((book)=>)
-  }
-
+  
   return (
     <div className='adminpage'>
       {/* <input type='search' value={search} onChange={(event)=>(handleSearch(event))}></input> */}

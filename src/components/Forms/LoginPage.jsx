@@ -6,6 +6,9 @@ import { useAuth } from '../auth/AuthProvider'
 
 
 export default function LoginPage() {
+    const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
+    const adminEmail = import.meta.env.VITE_ADMINEMAIL;
+
     const auth = useAuth();
     const navigate = useNavigate();
 
@@ -20,14 +23,15 @@ export default function LoginPage() {
     });
 
     useEffect(()=>{
-        const data = localStorage.getItem('site');
+        const data = auth.user;
         if(data){
-            if(data.email == 'admin@gmail.com'){
+            console.log(data.username);
+            if(data.email === adminEmail){
                 navigate('/adminPage');
             }
-            else(
-                navigate('/bookRental')
-            )
+            else{
+                navigate('/bookRental');
+            }
         }
     },[]);
 
@@ -40,8 +44,8 @@ export default function LoginPage() {
     };
 
     const validation = () => {
-        const emailPattern = /^[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,25}$/;
-        const passwordPattern = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,20}$/;
+        const emailPattern = new RegExp(import.meta.env.VITE_EMAILPATTERN);
+        const passwordPattern = new RegExp(import.meta.env.VITE_PASSWORDPATTERN);
         let isValid = true;
 
         //email validation
@@ -81,11 +85,11 @@ export default function LoginPage() {
         event.preventDefault();
         if (validation()) {
             try {
-                const dbResponse = await axios.get('http://localhost:3000/user');
+                const dbResponse = await axios.get(`${userDetailsAPI}`);
                 const existingData = dbResponse.data;
                 // find the email and password is exist in db
                 const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));
-                
+
                 if (userExistance) {
                     alert('Login successful');
                     auth.loginAction(userExistance);
@@ -101,35 +105,33 @@ export default function LoginPage() {
         }
     }
     return (
-        <>
-            <div className='maindiv'>
-                <div className='formdiv'>
-                    <h2>Login</h2><hr />
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
-                            <span>{error.emailError && <p>{error.emailError}</p>}</span>
-                        </div>
+        <div className='maindiv'>
+            <div className='formdiv'>
+                <h2>Login</h2><hr />
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" id='email' name='email' value={data.email} onChange={handleChange} />
+                        <span>{error.emailError && <p>{error.emailError}</p>}</span>
+                    </div>
 
-                        <div>
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
-                            <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
-                        </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id='password' name='password' value={data.password} onChange={handleChange} />
+                        <span>{error.passwordError && <p>{error.passwordError}</p>}</span>
+                    </div>
 
-                        <div>
-                            <button type="submit">Submit</button>
-                        </div>
+                    <div>
+                        <button type="submit">Submit</button>
+                    </div>
 
-                        <div>
-                            New User? <Link to='/signupPage'>Signup</Link>
-                        </div>
-                    </form>
+                    <div>
+                        New User? <Link to='/signupPage'>Signup</Link>
+                    </div>
+                </form>
 
-                </div>
             </div>
-        </>
+        </div>
     )
 }
 

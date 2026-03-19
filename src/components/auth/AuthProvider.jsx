@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 export default function AuthProvider({ children }) {
+    const adminEmail = import.meta.env.VITE_ADMINEMAIL;
+    const adminPassword = import.meta.env.VITE_ADMINPASSWORD;
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
@@ -17,7 +19,7 @@ export default function AuthProvider({ children }) {
         if (data) {
             setUser(data);
             localStorage.setItem("site", JSON.stringify(data));
-            if (data.email === "admin@gmail.com" && data.password === "Admin@123") {
+            if (data.email === adminEmail && data.password === adminPassword) {
                 navigate('/adminPage');
             } else {
                 navigate('/bookRental', { state: { userId: data.id } });

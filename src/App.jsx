@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />}></Route>
           <Route path='loginPage' element={<LoginPage />}></Route>
-          <Route path='signupPage' element={<SignupPage formtype='signup' />}></Route>
+          <Route path='signupPage' element={<SignupPage />}></Route>
           <Route element={<PrivateRoute></PrivateRoute>}>
             <Route path='adminPage' element={<AdminPage></AdminPage>}></Route>
             <Route path='updateBook' element={<UpdateBook></UpdateBook>}></Route>
