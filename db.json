@@ -16,17 +16,29 @@
         {
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
-          "bookTitle": "Programming with Java | 7th Edition "
+          "bookTitle": "Programming with Java | 7th Edition ",
+          "rentedDate": "5/7/2025",
+          "rentedTime": "3:50:09 PM"
+        }
+      ],
+      "returnedBooks": [
+        {
+          "bookId": 1,
+          "bookAuthor": " E. Balagurusamy",
+          "bookTitle": "Programming with Java | 7th Edition ",
+          "rentedDate": "4/25/2025",
+          "rentedTime": "5:30:31 PM",
+          "returnDate": "5/7/2025",
+          "returnTime": "11:02:52 AM"
         },
         {
           "bookId": 2,
           "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition"
-        },
-        {
-          "bookId": 4,
-          "bookAuthor": "ERIC, MATTHES",
-          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming"
+          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+          "rentedDate": "5/7/2025",
+          "rentedTime": "11:05:17 AM",
+          "returnDate": "5/7/2025",
+          "returnTime": "3:39:41 PM"
         }
       ],
       "id": 2
@@ -37,7 +49,7 @@
       "bookTitle": "Programming with Java | 7th Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
       "bookAuthor": " E. Balagurusamy",
-      "bookStock": "5",
+      "bookStock": 4,
       "id": 1
     },
     {

@@ -1,0 +1,53 @@
+.header{
+    display: flex;
+    padding: 5px;
+    font-style: italic;
+    text-align: center;
+    background-color: rgb(218, 218, 129);
+}
+.navigation{
+    display: flex;
+    text-align: center;
+    width: 85%;
+    padding: 5px;
+    justify-content: space-between;
+}
+.details, .profile{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: space-around;
+}
+.search{
+    width: 40%;
+}
+.search input{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    width: 80%;
+}
+.navigation button{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+.navigation button:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.profile a{
+    text-decoration: none;
+    color: black;
+}
+.profile a:hover{
+    text-decoration: underline;
+}
+.details a{
+    text-decoration: none;
+    color: black;
+}
+.details a:hover{
+    text-decoration: underline;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios';
 import '../../assets/styles/AdminPage.css'
 import { useNavigate } from 'react-router-dom';
@@ -8,23 +8,13 @@ import { useAuth } from '../auth/AuthProvider';
 export default function AdminPage() {
   const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
-  const [booksData, setBooksData] = useState([]);
   const navigate = useNavigate();
   const auth = useAuth();
-  // const [search, setSearch]= useState('');
+  const booksData = auth.bookDetails;
 
-  const fetchBookDetails = async () => {
-    try {
-      const response = await axios.get(`${bookDetailsAPI}`);
-      setBooksData(response.data);
-    } catch (error) {
-      alert("Error Fetching Books Details : " + error);
-    }
-  }
-
-  useEffect(() => {
-    fetchBookDetails();
-  }, []);
+  useEffect(()=>{
+    auth.fetchBookData();
+  },[])
 
   const handleAddBook = () => {
     navigate('/addBook');
@@ -38,7 +28,7 @@ export default function AdminPage() {
   const handleDelete = async (bookId) => {
       try {
         await axios.delete(`${bookDetailsAPI}/${bookId}`);
-        fetchBookDetails();
+        auth.fetchBookData();
         alert("Book deleted Successfully");
       } catch (error) {
         console.log("Error in Deleting Book : " + error);
@@ -48,11 +38,9 @@ export default function AdminPage() {
   
   return (
     <div className='adminpage'>
-      {/* <input type='search' value={search} onChange={(event)=>(handleSearch(event))}></input> */}
 
       <div className='adminButtons'>
         <button onClick={handleAddBook}>Add New Book</button>
-        <button onClick={() => (auth.logout())}>Logout</button>
       </div>
 
 
