@@ -7,7 +7,7 @@ export default function PrivateRoute() {
 
   if (data.user == undefined || data.user == null || data.user == '' || Object.values(data.user).length == 0) {
     return (
-      <Navigate to="/loginPage"></Navigate>
+      <Navigate to="/"></Navigate>
     );
   }
 

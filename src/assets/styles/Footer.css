@@ -1,5 +1,5 @@
 .footer{
-    background-color: rgb(202, 202, 120);
+    background-color: rgb(242, 242, 238);
     margin-top: 30vh;
     display: flex;
     flex-direction: column;
@@ -10,8 +10,8 @@
 .about{
     text-align: justify;
     width: 50%;
-    border: 1px solid gray;
-    background-color: rgb(213, 213, 132);
+    border: 1px solid rgb(195, 194, 194);
+    background-color: rgb(234, 234, 230);
     border-radius: 10px;
     padding: 15px;
 }

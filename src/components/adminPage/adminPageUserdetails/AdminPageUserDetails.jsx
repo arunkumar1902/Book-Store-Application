@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { ADMINEMAIL, USERDETAILSAPI } from "../../../../public/config/env";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import '../../../assets/styles/ViewUserDetails.css';
+import '../../../assets/styles/ViewUserdetails.css';
 
 
 export default function AdminPageUserDetails() {

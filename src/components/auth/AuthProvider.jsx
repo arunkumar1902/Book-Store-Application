@@ -42,7 +42,7 @@ export default function AuthProvider({ children }) {
             await fetchUserData(data.id);
             localStorage.setItem("site", JSON.stringify(data));
             if (data.email === ADMINEMAIL && data.password === ADMINPASSWORD) {
-                alert("You are now logged in as Admin");
+                // alert("You are now logged in as Admin");
                 navigate('/adminPage');
             } else {
                 navigate('/bookRental');
@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
 
     const logout = () => {
         setUser(null);
-        navigate('/loginPage');
+        // navigate('/loginPage');
         localStorage.clear();
     }
 

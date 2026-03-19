@@ -19,11 +19,11 @@ export default function UserProfile() {
 
     return (
         <div className='UserProfileContent'>
-            {profileData === "profile" && <div><h4>My Details : <br /><br /></h4> <ProfileEdit userData={data} ></ProfileEdit></div>}
+            {profileData === "profile" && <div><h2>My Details</h2> <ProfileEdit userData={data} ></ProfileEdit></div>}
 
-            {profileData === "rentedBooks" && <div><h4>Currently Rented Books : <br /><br /></h4><UserRentedBooksDetails userData={data}></UserRentedBooksDetails></div>}
+            {profileData === "rentedBooks" && <div><h2>Currently Rented Books</h2><UserRentedBooksDetails userData={data}></UserRentedBooksDetails></div>}
 
-            {profileData === "returnedBooks" && <div><h4>Returned Books Details : </h4><UserReturnedBooks userData={data}></UserReturnedBooks></div>}
+            {profileData === "returnedBooks" && <div><h2>Returned Books Details</h2><UserReturnedBooks userData={data}></UserReturnedBooks></div>}
         </div>
     )
 }

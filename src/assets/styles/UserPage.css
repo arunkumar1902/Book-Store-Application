@@ -1,7 +1,16 @@
 .userpage{
     display: flex;
+    flex-direction: column;
 }
-.userpage h2{
+.welcomeDiv{
+    margin: 40px;
+    padding: 20px;
+}
+.welcomeDiv img{
+    width: 100%;
+    border-radius: 20px;
+}
+.bookpage h2{
     padding: 30px;
 }
 .Cart_Rent_Buttons{
@@ -11,7 +20,7 @@
     cursor: pointer;
     padding: 8px;
     width: 40%;
-    background-color: beige;
+    background-color: rgb(255, 255, 181);
     border: 1px solid rgb(178, 178, 163);
     color: black;
     margin-right: 10px;
@@ -67,5 +76,8 @@
 @media (max-width:700px){
     .userBookList{
         grid-template-columns: auto;
+    }
+    .welcomeDiv{
+        margin: 10px;
     }
 }

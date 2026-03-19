@@ -3,6 +3,7 @@
     border-collapse: collapse;
     text-align: center;
     padding: 5px;
+    background-color: red;
 }
 .viewUserDetailsDiv{
     padding: 2px;
