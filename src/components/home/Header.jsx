@@ -54,7 +54,7 @@ export default function Header() {
 
                         {data.email === ADMINEMAIL ?
                             <div className='profile'>
-                                <span>AdminPage</span>
+                                {/* <span>AdminPage</span> */}
                                 <button onClick={() => (auth.logout())}>Logout</button>
                             </div>
                             :

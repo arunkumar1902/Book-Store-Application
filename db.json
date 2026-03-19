@@ -22,39 +22,11 @@
       "cartDetails": [],
       "booksRented": [
         {
-          "bookId": 4,
-          "bookAuthor": "ERIC, MATTHES",
-          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
-          "rentedDate": "6/17/2025",
-          "rentedTime": "3:01:06 PM"
-        },
-        {
-          "bookId": 6,
-          "bookAuthor": "Walter Rudin ",
-          "bookTitle": "Real and Complex Analysis | 3rd Edition ",
-          "rentedDate": "6/17/2025",
-          "rentedTime": "3:08:51 PM"
-        },
-        {
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "6/23/2025",
-          "rentedTime": "2:57:22 PM"
-        },
-        {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "6/23/2025",
-          "rentedTime": "3:25:49 PM"
-        },
-        {
-          "bookId": 3,
-          "bookAuthor": " David M. Burton",
-          "bookTitle": "Elementary Number Theory | 7th Edition",
-          "rentedDate": "7/1/2025",
-          "rentedTime": "10:46:19 AM"
+          "rentedDate": "12/5/2025",
+          "rentedTime": "5:43:28 PM"
         }
       ],
       "returnedBooks": [
@@ -96,6 +68,76 @@
           "rentedTime": "3:01:03 PM",
           "returnDate": "6/23/2025",
           "returnTime": "2:56:39 PM"
+        },
+        {
+          "id": 1752205017618,
+          "bookId": 4,
+          "bookAuthor": "ERIC, MATTHES",
+          "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "3:01:06 PM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:06:57 AM"
+        },
+        {
+          "id": 1752205021753,
+          "bookId": 6,
+          "bookAuthor": "Walter Rudin ",
+          "bookTitle": "Real and Complex Analysis | 3rd Edition ",
+          "rentedDate": "6/17/2025",
+          "rentedTime": "3:08:51 PM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:07:01 AM"
+        },
+        {
+          "id": 1752205024962,
+          "bookId": 1,
+          "bookAuthor": " E. Balagurusamy",
+          "bookTitle": "Programming with Java | 7th Edition ",
+          "rentedDate": "6/23/2025",
+          "rentedTime": "2:57:22 PM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:07:04 AM"
+        },
+        {
+          "id": 1752205027629,
+          "bookId": 2,
+          "bookAuthor": "Yashavant Kanetkar ",
+          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
+          "rentedDate": "6/23/2025",
+          "rentedTime": "3:25:49 PM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:07:07 AM"
+        },
+        {
+          "id": 1752205030149,
+          "bookId": 3,
+          "bookAuthor": " David M. Burton",
+          "bookTitle": "Elementary Number Theory | 7th Edition",
+          "rentedDate": "7/1/2025",
+          "rentedTime": "10:46:19 AM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:07:10 AM"
+        },
+        {
+          "id": 1752205073366,
+          "bookId": 3,
+          "bookAuthor": " David M. Burton",
+          "bookTitle": "Elementary Number Theory | 7th Edition",
+          "rentedDate": "7/11/2025",
+          "rentedTime": "9:07:39 AM",
+          "returnDate": "7/11/2025",
+          "returnTime": "9:07:53 AM"
+        },
+        {
+          "id": 1764146121541,
+          "bookId": 1,
+          "bookAuthor": " E. Balagurusamy",
+          "bookTitle": "Programming with Java | 7th Edition ",
+          "rentedDate": "11/26/2025",
+          "rentedTime": "2:03:55 PM",
+          "returnDate": "11/26/2025",
+          "returnTime": "2:05:21 PM"
         }
       ],
       "id": 2,
@@ -136,21 +178,21 @@
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
-      "bookStock": 3,
+      "bookStock": 4,
       "id": 2
     },
     {
       "bookTitle": "Elementary Number Theory | 7th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
       "bookAuthor": " David M. Burton",
-      "bookStock": 5,
+      "bookStock": 6,
       "id": 3
     },
     {
       "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9781718502086.jpg",
       "bookAuthor": "ERIC, MATTHES",
-      "bookStock": 2,
+      "bookStock": 3,
       "id": 4
     },
     {
@@ -164,7 +206,7 @@
       "bookTitle": "Real and Complex Analysis | 3rd Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/119/9789355326119.jpg",
       "bookAuthor": "Walter Rudin ",
-      "bookStock": 0,
+      "bookStock": 1,
       "id": 6
     }
   ]

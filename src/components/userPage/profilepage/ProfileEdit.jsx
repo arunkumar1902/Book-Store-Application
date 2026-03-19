@@ -25,15 +25,16 @@ export default function ProfileEdit({ userData }) {
 
             <div>
                 <span>Address : </span>
-                <span>
-                    {userData.address}
-                    <button onClick={() => setAddressEdit(true)}>Edit</button>
-                </span>
+                <span>{userData.address}</span>
                 {addressEdit && <AddressEdit userId={userData.id} address={userData.address} setAddressEdit={setAddressEdit}></AddressEdit>}
             </div>
-            <br /><br />
+            <br />
 
-            <button onClick={() => setChangePassword(true)}>Change Password</button>
+            <div className='userProfileEditButtons'>
+                <button onClick={() => setAddressEdit(true)}>Update Address</button>
+                <br />
+                <button onClick={() => setChangePassword(true)}>Change Password</button>
+            </div>
 
             {changePassword && <ChangePassword password={userData.password} setChangePassword={setChangePassword} setEditingNewPassword={setEditingNewPassword}></ChangePassword>}
 

@@ -1,20 +1,38 @@
-.userlogin{
+.landingPageDiv{
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    background-image: url("https://rocketexpansion.com/wp-content/uploads/2022/02/website-for-a-book-b2.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
     align-items: center;
-    min-height: 90vh;
+    margin-top: -10px;
+}
+.userlogin{
+    background-color: rgb(250, 248, 234);
+    display: flex; 
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 1px black;
+    padding: 30px;
+    align-items: center;
 }
 .userlogin a{
     color: black;
     text-align: center;
     text-decoration: none;
-    padding: 10px;
-    width: 10%;
+    padding: 5px;
+    width: 100px;
     border: 1px solid rgb(179, 179, 92);
     border-radius: 10px;
-    background-color: beige;
+    background-color: rgb(239, 239, 157);
 }
 .userlogin a:hover{
-    background-color: wheat;
-    color: black;
+    background-color: rgb(252, 158, 7); 
+    color: white;
+}
+@media(max-width:800px){
+    .landingPageDiv{
+        margin-top: -40px;
+    }
 }

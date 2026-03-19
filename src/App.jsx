@@ -18,6 +18,7 @@ import UserCart from './components/cart/UserCart'
 import ForgotPassword from './components/forgotPassword/ForgotPassword'
 import AdminPageUserDetails from './components/adminPage/adminPageUserdetails/AdminPageUserDetails'
 import ViewUserDetails from './components/adminPage/viewUserDetails/ViewUserDetails'
+import AdminBookDetails from './components/adminPage/adminBookDetails/AdminBookDetails'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
               <Route path='userCart' element={<UserCart></UserCart>}></Route>
               <Route path='adminPageUserDetails' element={<AdminPageUserDetails></AdminPageUserDetails>}></Route>
               <Route path='viewUserDetails' element={<ViewUserDetails></ViewUserDetails>}></Route>
+              <Route path='adminBookDetils' element={<AdminBookDetails></AdminBookDetails>}></Route>
             </Route>
           </Routes>
         </div>

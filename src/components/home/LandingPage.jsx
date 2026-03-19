@@ -4,9 +4,14 @@ import '../../assets/styles/LandingPage.css'
 
 export default function LandingPage() {
     return (
-        <div className='userlogin'>
-            <Link to='loginPage'>Login</Link>&emsp;
-            <Link to='signupPage'>Signup</Link>
+        <div className='landingPageDiv'>
+            <div className='userlogin'>
+                <h3> Create a New Account? </h3><br />
+                <Link to='signupPage'>Signup</Link>
+                <br /><br />
+                <h3>Already have an Account?</h3><br />
+                <Link to='loginPage'>Login</Link>
+            </div>
         </div>
     )
 }
