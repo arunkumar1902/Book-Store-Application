@@ -1,4 +1,6 @@
 .header{
+    position: fixed;
+    width: 100%;
     display: flex;
     padding: 5px;
     font-style: italic;
@@ -7,8 +9,7 @@
 }
 .navigation{
     display: flex;
-    text-align: center;
-    width: 85%;
+    width: 100%;
     padding: 3px;
     justify-content: space-between;
 }
@@ -30,6 +31,7 @@
 .navigation button{
     border: 1px solid black;
     border-radius: 5px;
+    font-style: italic;
     padding: 5px;
 }
 .navigation button:hover{

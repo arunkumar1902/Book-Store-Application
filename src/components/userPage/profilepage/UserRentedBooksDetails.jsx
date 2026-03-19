@@ -1,27 +1,28 @@
 import React from 'react'
 import axios from 'axios';
-import { useAuth } from '../auth/AuthProvider';
+import { useAuth } from '../../auth/AuthProvider';
 
-export default function UserRentedBooksDetails({ userData, fetchUser }) {
+export default function UserRentedBooksDetails({ userData }) {
     const userDetailsAPI = import.meta.env.VITE_USERDETAILS;
     const bookDetailsAPI = import.meta.env.VITE_BOOKDETAILS;
 
     const auth = useAuth();
-    
-    const updateStock = async (bookid, bookStock)=>{
+
+    const updateStock = async (bookid, bookStock) => {
         try {
             await axios.patch(`${bookDetailsAPI}/${bookid}`, {
                 "bookStock": bookStock + 1
             });
             auth.fetchBookData();
         } catch (error) {
-            console.log(error);
+            alert("Error Occurred while returing the book, try again : ",error);
         }
     }
 
     const returnBook = async (bookData) => {
         try {
             const returnBookData = {
+                "id": Date.now(),
                 "bookId": bookData.bookId,
                 "bookAuthor": bookData.bookAuthor,
                 "bookTitle": bookData.bookTitle,
@@ -41,13 +42,11 @@ export default function UserRentedBooksDetails({ userData, fetchUser }) {
             }
 
             await axios.patch(`${userDetailsAPI}/${userData.id}`, updateReturnedBooks);
-            fetchUser(userData.id);
+            await auth.fetchUserData(userData.id);
 
             const response = await axios.get(`${bookDetailsAPI}/${bookData.bookId}`);
             const bookStock = response.data.bookStock;
-            updateStock(bookData.bookId, bookStock);
-
-
+            await updateStock(bookData.bookId, bookStock);
             alert("Book Returned Successfully");
 
         } catch (error) {
@@ -63,22 +62,22 @@ export default function UserRentedBooksDetails({ userData, fetchUser }) {
                 : <div className='BooksList'>
                     <table>
                         <thead>
-                        <tr>
-                            <th>S.no</th>
-                            <th>Book Title</th>
-                            <th>Book Author</th>
-                            <th>Return</th>
-                        </tr>
+                            <tr>
+                                <th>S.no</th>
+                                <th>Book Title</th>
+                                <th>Book Author</th>
+                                <th>Return</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {userData.booksRented.map((BooksRented, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{BooksRented.bookTitle}</td>
-                                <td>{BooksRented.bookAuthor}</td>
-                                <td><button onClick={() => returnBook(BooksRented)}>Return</button></td>
-                            </tr>
-                        ))}
+                            {userData.booksRented.map((BooksRented, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{BooksRented.bookTitle}</td>
+                                    <td>{BooksRented.bookAuthor}</td>
+                                    <td><button onClick={() => returnBook(BooksRented)}>Return</button></td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

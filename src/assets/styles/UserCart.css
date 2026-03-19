@@ -1,0 +1,32 @@
+.cart_wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.cartDetails_container{
+    width: 90%;
+}
+.emptyCart{
+    display: flex;
+    justify-content: center;
+}
+.emptyCart img{
+    width: 60%;
+}
+.cartItems{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.individual_cartBooks{
+    width: 70%;
+    display: flex;
+    border: 1px solid rgb(233, 231, 231);
+    padding: 20px;
+    margin: 20px;
+}
+.cartImage img{
+    width: 50%;
+}
+.bookDescription{
+    width: 100%;
+}

@@ -5,7 +5,7 @@
     min-height: 80vh;
 }
 .UserDiv{
-    margin-top: 20px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     width: 80%;

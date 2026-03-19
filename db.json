@@ -12,6 +12,14 @@
       "email": "kumar1902002@gmail.com",
       "password": "123@Qwe",
       "confirmpassword": "123@Qwe",
+      "cartDetails": [
+        {
+          "bookId": 2
+        },
+        {
+          "bookId": 3
+        }
+      ],
       "booksRented": [
         {
           "bookId": 1,
@@ -19,26 +27,52 @@
           "bookTitle": "Programming with Java | 7th Edition ",
           "rentedDate": "5/7/2025",
           "rentedTime": "3:50:09 PM"
+        },
+        {
+          "bookId": 3,
+          "bookAuthor": " David M. Burton",
+          "bookTitle": "Elementary Number Theory | 7th Edition",
+          "rentedDate": "5/14/2025",
+          "rentedTime": "3:54:28 PM"
+        },
+        {
+          "bookId": 5,
+          "bookAuthor": "Behrouz A. Forouzan ",
+          "bookTitle": "Computer Networks: A Top-Down Approach",
+          "rentedDate": "5/14/2025",
+          "rentedTime": "3:55:37 PM"
         }
       ],
       "returnedBooks": [
         {
+          "id": 1747050903553,
           "bookId": 1,
           "bookAuthor": " E. Balagurusamy",
           "bookTitle": "Programming with Java | 7th Edition ",
-          "rentedDate": "4/25/2025",
-          "rentedTime": "5:30:31 PM",
-          "returnDate": "5/7/2025",
-          "returnTime": "11:02:52 AM"
+          "rentedDate": "5/7/2025",
+          "rentedTime": "3:50:09 PM",
+          "returnDate": "5/12/2025",
+          "returnTime": "5:25:03 PM"
         },
         {
-          "bookId": 2,
-          "bookAuthor": "Yashavant Kanetkar ",
-          "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
-          "rentedDate": "5/7/2025",
-          "rentedTime": "11:05:17 AM",
-          "returnDate": "5/7/2025",
-          "returnTime": "3:39:41 PM"
+          "id": 1747050947003,
+          "bookId": 1,
+          "bookAuthor": " E. Balagurusamy",
+          "bookTitle": "Programming with Java | 7th Edition ",
+          "rentedDate": "5/12/2025",
+          "rentedTime": "5:25:35 PM",
+          "returnDate": "5/12/2025",
+          "returnTime": "5:25:47 PM"
+        },
+        {
+          "id": 1747213841960,
+          "bookId": 5,
+          "bookAuthor": "Behrouz A. Forouzan ",
+          "bookTitle": "Computer Networks: A Top-Down Approach",
+          "rentedDate": "5/14/2025",
+          "rentedTime": "2:36:26 PM",
+          "returnDate": "5/14/2025",
+          "returnTime": "2:40:41 PM"
         }
       ],
       "id": 2
@@ -63,7 +97,7 @@
       "bookTitle": "Elementary Number Theory | 7th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/129/9789355325129.jpg",
       "bookAuthor": " David M. Burton",
-      "bookStock": 8,
+      "bookStock": 7,
       "id": 3
     },
     {
@@ -77,7 +111,7 @@
       "bookTitle": "Computer Networks: A Top-Down Approach",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/900/9789355324900.jpg",
       "bookAuthor": "Behrouz A. Forouzan ",
-      "bookStock": 2,
+      "bookStock": 0,
       "id": 5
     },
     {
