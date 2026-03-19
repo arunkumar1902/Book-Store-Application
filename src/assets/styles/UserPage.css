@@ -1,0 +1,85 @@
+.userpage{
+    display: flex;
+}
+.userpage h2{
+    padding: 30px;
+}
+.userButtons{
+    padding: 20px;
+    width:18%;
+    height: 200vh;
+    background-color: rgb(252, 254, 234);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 2px 3px 1px rgb(177, 177, 173)
+}
+.bookpage{
+    width: 82%;
+}
+.userpage button{
+    cursor: pointer;
+    padding: 8px;
+    width: 80%;
+    background-color: beige;
+    border: 1px solid rgb(178, 178, 163);
+    color: black;
+    margin: 10px;
+    border-radius: 10px;
+}
+.userpage button:disabled{
+    background-color: #fffffe;
+    color: rgb(254, 235, 235);
+}
+.userpage button:disabled:hover{
+    background-color: #fffffe;    
+    color: rgb(254, 235, 235);
+
+}
+.userpage button:hover{
+    background-color: rgb(252, 158, 7); 
+    color: white;
+}
+.userButtons i{
+    color: rgb(133, 134, 74);
+}
+.userProfile, .userRentBook{
+    width: 70%;
+    margin: 10px;
+    background-color: rgb(237, 237, 162);
+    text-align: center;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: small;
+}
+.userBookList{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-left: 20px;
+}
+.userBookContainer{
+    display: flex;
+    margin: 30px;
+    border: 1px solid rgb(219, 219, 203);
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgb(224, 224, 126);
+    padding: 30px;
+    width: 70%;
+}
+.userBookImage{
+    width: 30%;
+}
+.userBookImage img{
+    width: 90%;
+}
+.userBookDetails{
+    margin-left: 20px;
+    width: 70%;
+}
+.userpage input{
+    width: 80%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}

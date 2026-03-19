@@ -1,13 +1,81 @@
-import React from 'react'
-import FormValidation from './FormValidation'
+import React, { useEffect, useState } from 'react'
 import '../../assets/styles/Forms.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { useAuth } from '../auth/AuthProvider'
 
 
-function LoginPage({ data, handleChange, validation, error }) {
+export default function LoginPage() {
+    const auth = useAuth();
     const navigate = useNavigate();
-    
+
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const [error, setError] = useState({
+        emailError: '',
+        passwordError: ''
+    });
+
+    useEffect(()=>{
+        const data = localStorage.getItem('site');
+        if(data){
+            if(data.email == 'admin@gmail.com'){
+                navigate('/adminPage');
+            }
+            else(
+                navigate('/bookRental')
+            )
+        }
+    },[]);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
+    const validation = () => {
+        const emailPattern = /^[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,25}$/;
+        const passwordPattern = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,20}$/;
+        let isValid = true;
+
+        //email validation
+        if (!emailPattern.test(data.email)) {
+            setError((prevError) => ({
+                ...prevError,
+                emailError: 'Enter valid Email ID'
+            }));
+            isValid = false;
+        } else {
+            setError((prevError) => ({
+                ...prevError,
+                emailError: ''
+            }));
+        }
+
+        //password validation
+        if (data.password === "" || !passwordPattern.test(data.password)) {
+            setError((prevError) => ({
+                ...prevError,
+                passwordError: "Password must contain atleast 1 Special Character, 1 number, 1 uppercase and 1 lowercase alphabet with atleast 7 characters"
+            }));
+            isValid = false;
+        } else {
+            setError((prevError) => ({
+                ...prevError,
+                passwordError: ''
+            }));
+        }
+
+        return isValid;
+
+    }
+
     const handleSubmit = async (event) => {
 
         event.preventDefault();
@@ -17,17 +85,10 @@ function LoginPage({ data, handleChange, validation, error }) {
                 const existingData = dbResponse.data;
                 // find the email and password is exist in db
                 const userExistance = existingData.find((user) => (user.email === data.email && user.password === data.password));
-
-                console.log(userExistance);
-                //checking user logged i as admin
-                if (data.email === "admin@gmail.com" && data.password === "Admin@123") {
-                    alert('Logined as admin');
-                    navigate('/adminPage')
-                }
-                // for user login
-                else if (userExistance) {
+                
+                if (userExistance) {
                     alert('Login successful');
-                    navigate('/bookRental');
+                    auth.loginAction(userExistance);
                 }
                 else {
                     alert('Email or password incorrect');
@@ -72,4 +133,3 @@ function LoginPage({ data, handleChange, validation, error }) {
     )
 }
 
-export default FormValidation(LoginPage)
