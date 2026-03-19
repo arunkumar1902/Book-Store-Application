@@ -27,14 +27,14 @@
       "bookTitle": "Programming with Java | 7th Edition ",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/891/9789355325891.jpg",
       "bookAuthor": " E. Balagurusamy",
-      "bookStock": "4",
+      "bookStock": "1",
       "id": 1
     },
     {
       "bookTitle": "Let Us C: Authentic guide to C programming language - 19th Edition",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/765/9789355512765.jpg",
       "bookAuthor": "Yashavant Kanetkar ",
-      "bookStock": "4",
+      "bookStock": "6",
       "id": 2
     },
     {
@@ -47,9 +47,23 @@
     {
       "bookTitle": "Python Crash Course, 3rd Edition: A Hands-On, Project-Based Introduction to Programming",
       "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/086/9781718502086.jpg",
-      "bookAuthor": "ERIC, MATTHES ",
-      "bookStock": "2",
+      "bookAuthor": "ERIC, MATTHES",
+      "bookStock": "4",
       "id": 4
+    },
+    {
+      "bookTitle": "Computer Networks: A Top-Down Approach",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/900/9789355324900.jpg",
+      "bookAuthor": "Behrouz A. Forouzan ",
+      "bookStock": "2",
+      "id": 5
+    },
+    {
+      "bookTitle": "Real and Complex Analysis | 3rd Edition ",
+      "bookImage": "https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/119/9789355326119.jpg",
+      "bookAuthor": "Walter Rudin ",
+      "bookStock": "1",
+      "id": 6
     }
   ]
 }

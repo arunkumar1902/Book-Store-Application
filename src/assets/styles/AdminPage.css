@@ -1,24 +1,28 @@
 .adminpage{
     display: flex;
-    /* justify-content: space-between; */
 }
 .adminButtons{
+    width: 20%;
+    background-color: rgb(252, 254, 234);
     display: flex;
     flex-direction: column;
+    box-shadow: 1px 1px rgb(201, 193, 106);
 }
-.adminButtons button{
+.adminpage button{
     cursor: pointer;
     padding: 10px;
     background-color: beige;
-    border: 1px solid beige;
+    border: 1px solid rgb(178, 178, 163);
     color: black;
+    margin: 10px;
+    border-radius: 10px;
 }
-.adminButtons button:hover{
-    border: 1px solid black;
+.adminpage button:hover{
+    background-color: rgb(252, 158, 7); 
+    color: white;
 }
 .booksList{
-    width: 90%;
-    margin-top: 30px;
+    margin: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,6 +35,7 @@
     border-radius: 10px;
     width: 50%;
     padding:20px;
+    margin-top: 20px;
 }
 .bookImage{
     width: 30%;
